@@ -75,7 +75,12 @@
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labelNick);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(795, 427);
+            this.MinimumSize = new System.Drawing.Size(795, 427);
             this.Name = "CreateDlg";
+            this.Opacity = 0.9D;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "CreateDlg";
             this.ResumeLayout(false);
             this.PerformLayout();

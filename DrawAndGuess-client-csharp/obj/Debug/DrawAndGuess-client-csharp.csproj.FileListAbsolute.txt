@@ -10,3 +10,5 @@ c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\
 c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\bin\Debug\Newtonsoft.Json.xml
 c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.exe
 c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.pdb
+c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.csprojResolveAssemblyReference.cache
+c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess_client_csharp.WaitDlg.resources
