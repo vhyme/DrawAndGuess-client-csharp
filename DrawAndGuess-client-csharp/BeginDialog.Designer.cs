@@ -40,10 +40,9 @@
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.button1.Location = new System.Drawing.Point(371, 251);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(556, 397);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 41);
+            this.button1.Size = new System.Drawing.Size(279, 65);
             this.button1.TabIndex = 0;
             this.button1.Text = "Create Room";
             this.button1.UseVisualStyleBackColor = false;
@@ -54,10 +53,9 @@
             this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.button2.Location = new System.Drawing.Point(371, 309);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(556, 489);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(186, 41);
+            this.button2.Size = new System.Drawing.Size(279, 65);
             this.button2.TabIndex = 1;
             this.button2.Text = "Join Room";
             this.button2.UseVisualStyleBackColor = false;
@@ -67,27 +65,25 @@
             this.button3.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.button3.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button3.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.button3.Location = new System.Drawing.Point(371, 367);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Location = new System.Drawing.Point(556, 581);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(186, 41);
+            this.button3.Size = new System.Drawing.Size(279, 65);
             this.button3.TabIndex = 2;
             this.button3.Text = "Exit Game";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // BeginDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(607, 442);
+            this.ClientSize = new System.Drawing.Size(910, 700);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "BeginDialog";
             this.Text = "Draw And Guess";
             this.ResumeLayout(false);

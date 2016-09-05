@@ -16,7 +16,7 @@ namespace DrawAndGuess_client_csharp
         public WaitDlg(int room, string nick)
         {
             InitializeComponent();
-            labelRoomNum.Text = "房间号：" + room.ToString();
+            labelRoomNum.Text = "Room ID: " + room.ToString();
         }
     }
 }

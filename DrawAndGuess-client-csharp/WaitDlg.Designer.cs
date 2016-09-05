@@ -29,23 +29,45 @@
         private void InitializeComponent()
         {
             this.labelRoomNum = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelRoomNum
             // 
             this.labelRoomNum.AutoSize = true;
-            this.labelRoomNum.Location = new System.Drawing.Point(13, 13);
+            this.labelRoomNum.Location = new System.Drawing.Point(241, 27);
             this.labelRoomNum.Name = "labelRoomNum";
-            this.labelRoomNum.Size = new System.Drawing.Size(67, 19);
+            this.labelRoomNum.Size = new System.Drawing.Size(75, 19);
             this.labelRoomNum.TabIndex = 0;
-            this.labelRoomNum.Text = "房间号：";
+            this.labelRoomNum.Text = "Room ID:";
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(245, 64);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(277, 276);
+            this.listView1.TabIndex = 1;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(605, 305);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 35);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Start Game";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // WaitDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 377);
+            this.ClientSize = new System.Drawing.Size(777, 380);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.labelRoomNum);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WaitDlg";
             this.Text = "WaitDlg";
             this.ResumeLayout(false);
@@ -56,5 +78,7 @@
         #endregion
 
         private System.Windows.Forms.Label labelRoomNum;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button button1;
     }
 }
