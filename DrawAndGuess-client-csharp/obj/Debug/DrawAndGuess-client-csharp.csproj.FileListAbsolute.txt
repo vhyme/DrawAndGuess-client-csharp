@@ -12,3 +12,16 @@ c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\
 c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.pdb
 c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.csprojResolveAssemblyReference.cache
 c:\users\vhyme\documents\visual studio 2013\Projects\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess_client_csharp.WaitDlg.resources
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\bin\Debug\DrawAndGuess-client-csharp.exe.config
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.exe
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.pdb
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\bin\Debug\DrawAndGuess-client-csharp.exe
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\bin\Debug\DrawAndGuess-client-csharp.pdb
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\bin\Debug\SimpleTCP.dll
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.csprojResolveAssemblyReference.cache
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess_client_csharp.BeginDialog.resources
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess_client_csharp.CreateDlg.resources
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess_client_csharp.Properties.Resources.resources
+C:\Users\Hanniya\Source\Repos\DrawAndGuess-client-csharp\DrawAndGuess-client-csharp\obj\Debug\DrawAndGuess-client-csharp.csproj.GenerateResource.Cache
