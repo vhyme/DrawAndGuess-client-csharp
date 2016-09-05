@@ -28,11 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.labelRoomNum = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // labelRoomNum
+            // 
+            this.labelRoomNum.AutoSize = true;
+            this.labelRoomNum.Location = new System.Drawing.Point(13, 13);
+            this.labelRoomNum.Name = "labelRoomNum";
+            this.labelRoomNum.Size = new System.Drawing.Size(67, 19);
+            this.labelRoomNum.TabIndex = 0;
+            this.labelRoomNum.Text = "房间号：";
+            // 
+            // WaitDlg
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(660, 377);
+            this.Controls.Add(this.labelRoomNum);
+            this.Name = "WaitDlg";
             this.Text = "WaitDlg";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Label labelRoomNum;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,12 @@ namespace DrawAndGuess_client_csharp
 {
     public partial class CreateDlg : Form, MessageHandler
     {
+        string nick = "";
+
         public CreateDlg()
         {
-            Program.RegisterMessageHandler(this);
             InitializeComponent();
+            Program.RegisterMessageHandler(this);
         }
 
         ~CreateDlg() 
@@ -25,18 +28,32 @@ namespace DrawAndGuess_client_csharp
 
         private void onSubmit(object sender, EventArgs e)
         {
-            string nick = labelNick.Text;
-            Program.SendMessage("{\"method\": \"create\", \"nick\": \"" + nick + "\"}");
+            nick = labelNick.Text;
+            Program.SendMessage("{\"method\": \"create_room\", \"nick\": \"" + nick + "\"}");
         }
 
         public void HandleMessage(string message)
         {
-            MessageBox.Show(message);
-        }
+            JObject obj = JObject.Parse(message);
+            if (obj.Property("method") == null || obj.Property("method").ToString() == "")
+            { // 服务器主动发送的消息
+                string _event = obj.Property("event").Value.ToString();
+                // 处理服务器消息
+            }
+            else
+            {
+                string method = obj.Property("method").Value.ToString();
+                if (method == "create_room")
+                {
+                    if (obj.Property("success").Value.ToString() == "True")
+                    {
+                        int room = int.Parse(obj.Property("room").Value.ToString());
+                        WaitDlg dlg = new WaitDlg(room, nick);
 
-        private void labelNick_TextChanged(object sender, EventArgs e)
-        {
-
+                        dlg.ShowDialog();
+                    }
+                }
+            }
         }
     }
 }

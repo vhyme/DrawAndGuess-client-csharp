@@ -12,9 +12,11 @@ namespace DrawAndGuess_client_csharp
 {
     public partial class WaitDlg : Form
     {
-        public WaitDlg()
+
+        public WaitDlg(int room, string nick)
         {
             InitializeComponent();
+            labelRoomNum.Text = "房间号：" + room.ToString();
         }
     }
 }
