@@ -66,7 +66,7 @@
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(115, 28);
             this.btnSubmit.TabIndex = 2;
-            this.btnSubmit.Text = "创建房间";
+            this.btnSubmit.Text = "Create Room";
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.onSubmit);
             // 
