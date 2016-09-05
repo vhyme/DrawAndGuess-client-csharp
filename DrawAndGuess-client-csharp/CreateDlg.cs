@@ -33,5 +33,10 @@ namespace DrawAndGuess_client_csharp
         {
             MessageBox.Show(message);
         }
+
+        private void labelNick_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
