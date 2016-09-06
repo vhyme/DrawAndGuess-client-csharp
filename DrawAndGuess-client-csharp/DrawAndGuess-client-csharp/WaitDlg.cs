@@ -11,21 +11,21 @@ using System.Windows.Forms;
 
 namespace DrawAndGuess_client_csharp
 {
-    public partial class WaitDlg : Form, MessageHandler
+    public partial class WaitDlg : NetworkingForm
     {
 
         public WaitDlg(int room, string[] nicks, bool isMaster)
         {
             InitializeComponent();
+
             btnStart.Enabled = isMaster;
             btnStart.Text = isMaster ? "Start Game" : "Waiting...";
 
-            Program.RegisterMessageHandler(this, this);
             labelRoomNum.Text = "Room ID: " + room.ToString();
             listBox1.Items.AddRange(nicks);
         }
 
-        public void HandleMessage(string message) 
+        override public void HandleMessage(string message) 
         {
             JObject obj = JObject.Parse(message);
             if (obj["method"] == null || (string) obj["method"] == "")
@@ -64,15 +64,9 @@ namespace DrawAndGuess_client_csharp
             }
         }
 
-        ~WaitDlg()
-        {
-            Program.UnregisterMessageHandler(this);
-        }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
             new Draw().ShowDialog();
         }
-
     }
 }

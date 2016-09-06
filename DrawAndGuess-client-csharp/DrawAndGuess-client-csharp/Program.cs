@@ -16,7 +16,7 @@ namespace DrawAndGuess_client_csharp
 
         public static SimpleTcpClient client;
 
-        private static List<MessageHandler> handlers = new List<MessageHandler>();
+        private static List<NetworkingForm> handlers = new List<NetworkingForm>();
 
         private static List<System.EventHandler<SimpleTCP.Message>> lambdas =
             new List<System.EventHandler<SimpleTCP.Message>>();
@@ -76,12 +76,12 @@ namespace DrawAndGuess_client_csharp
             client.WriteLine(message + '\n');
         }
 
-        public static void RegisterMessageHandler(Control control, MessageHandler handler)
+        public static void RegisterMessageHandler(NetworkingForm handler)
         {
             handlers.Add(handler);
 
             System.EventHandler<SimpleTCP.Message> lambda
-                = (sender, msg) => control.BeginInvoke(
+                = (sender, msg) => handler.BeginInvoke(
                     new UIHandler(() => handler.HandleMessage(msg.MessageString))
                 );
 
@@ -90,7 +90,7 @@ namespace DrawAndGuess_client_csharp
             Program.client.DelimiterDataReceived += lambda;
         }
 
-        public static void UnregisterMessageHandler(MessageHandler handler)
+        public static void UnregisterMessageHandler(NetworkingForm handler)
         {
             int index = handlers.IndexOf(handler);
             handlers.RemoveAt(index);

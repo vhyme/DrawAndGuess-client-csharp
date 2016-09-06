@@ -11,19 +11,13 @@ using System.Windows.Forms;
 
 namespace DrawAndGuess_client_csharp
 {
-    public partial class CreateDlg : Form, MessageHandler
+    public partial class CreateDlg : NetworkingForm
     {
         string nick = "";
 
         public CreateDlg()
         {
             InitializeComponent();
-            Program.RegisterMessageHandler(this, this);
-        }
-
-        ~CreateDlg()
-        {
-            Program.UnregisterMessageHandler(this);
         }
 
         private void onSubmit(object sender, EventArgs e)
@@ -39,7 +33,7 @@ namespace DrawAndGuess_client_csharp
             }
         }
 
-        public void HandleMessage(string message)
+        override public void HandleMessage(string message)
         {
             JObject obj = JObject.Parse(message);
             if (obj.Property("method") == null || obj.Property("method").ToString() == "")
