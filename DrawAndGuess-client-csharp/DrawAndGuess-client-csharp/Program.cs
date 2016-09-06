@@ -34,6 +34,10 @@ namespace DrawAndGuess_client_csharp
             client.DelimiterDataReceived += (sender, msg) =>
             {
                 Console.WriteLine(msg.MessageString);
+                if (msg.MessageString.Contains("无法解析的命令"))
+                {
+                    MessageBox.Show("Command can't be parsed!");
+                }
             };
 
             Application.EnableVisualStyles();

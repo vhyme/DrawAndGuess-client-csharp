@@ -29,7 +29,14 @@ namespace DrawAndGuess_client_csharp
         private void onSubmit(object sender, EventArgs e)
         {
             nick = labelNick.Text;
-            Program.SendMessage("{\"method\": \"create_room\", \"nick\": \"" + nick + "\"}");
+            if (nick.Length < 2)
+            {
+                MessageBox.Show("Too short nickname!");
+            }
+            else
+            {
+                Program.SendMessage("{\"method\": \"create_room\", \"nick\": \"" + nick + "\"}");
+            }
         }
 
         public void HandleMessage(string message)
@@ -48,7 +55,7 @@ namespace DrawAndGuess_client_csharp
                     if (obj.Property("success").Value.ToString() == "True")
                     {
                         int room = int.Parse(obj.Property("room").Value.ToString());
-                        WaitDlg dlg = new WaitDlg(room, nick);
+                        WaitDlg dlg = new WaitDlg(room, new string[] { nick }, true);
 
                         dlg.ShowDialog();
                     }
