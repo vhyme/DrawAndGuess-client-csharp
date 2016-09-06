@@ -18,7 +18,7 @@ namespace DrawAndGuess_client_csharp
         public JoinDlg()
         {
             InitializeComponent();
-            Program.RegisterMessageHandler(this);
+            Program.RegisterMessageHandler(this, this);
         }
 
         ~JoinDlg()
@@ -49,27 +49,19 @@ namespace DrawAndGuess_client_csharp
         public void HandleMessage(string message)
         {
             JObject obj = JObject.Parse(message);
-            if (obj.Property("method") == null || obj.Property("method").ToString() == "")
+            if (obj["method"] == null)
             { // 服务器主动发送的消息
-                string _event = obj.Property("event").Value.ToString();
-                // 处理服务器消息
             }
             else
             {
-                string method = obj.Property("method").Value.ToString();
+                string method = (string) obj["method"];
                 if (method == "join_room")
                 {
-                    if (obj.Property("success").Value.ToString() == "True")
+                    if (obj["success"] != null && (bool) obj["success"])
                     {
-                        JToken[] tokens = obj.Property("players").ToArray();
-                        List<String> nicks = new List<String>();
-                        foreach (JToken token in tokens) 
-                        {
-                            nicks.Add(token.ToString());
-                        }
+                        string[] nicks = (string[]) from str in obj["players"].Children() select (string) str;
 
-                        WaitDlg dlg = new WaitDlg(room, nicks.ToArray<string>(), false);
-
+                        WaitDlg dlg = new WaitDlg(room, nicks, false);
                         dlg.ShowDialog();
                     }
                 }

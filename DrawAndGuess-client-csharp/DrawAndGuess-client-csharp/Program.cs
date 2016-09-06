@@ -5,16 +5,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleTCP;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
+using System.Net.Sockets;
 
 namespace DrawAndGuess_client_csharp
 {
     static class Program
     {
+        public delegate void UIHandler();
+
         public static SimpleTcpClient client;
 
         private static List<MessageHandler> handlers = new List<MessageHandler>();
 
-        private static List<System.EventHandler<SimpleTCP.Message>> lambdas = 
+        private static List<System.EventHandler<SimpleTCP.Message>> lambdas =
             new List<System.EventHandler<SimpleTCP.Message>>();
 
         //[DllImport("user32.dll")]
@@ -27,22 +31,44 @@ namespace DrawAndGuess_client_csharp
         public static void Main()
         {
             //SetProcessDPIAware();
-
-            client = new SimpleTcpClient().Connect("139.129.4.219", 8082);
-            client.StringEncoder = System.Text.UnicodeEncoding.UTF8;
-            client.Delimiter = System.Convert.ToByte('\n');
-            client.DelimiterDataReceived += (sender, msg) =>
+            try
             {
-                Console.WriteLine(msg.MessageString);
-                if (msg.MessageString.Contains("无法解析的命令"))
+                client = new SimpleTcpClient().Connect("139.129.4.219", 8082);
+                client.StringEncoder = System.Text.UnicodeEncoding.UTF8;
+                client.Delimiter = System.Convert.ToByte('\n');
+                client.DelimiterDataReceived += (sender, msg) =>
                 {
-                    MessageBox.Show("Command can't be parsed!");
-                }
-            };
+                    Console.WriteLine(msg.MessageString);
+                    if (msg.MessageString.Contains("无法解析的命令"))
+                    {
+                        MessageBox.Show("Command can't be parsed!");
+                    }
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BeginDialog());
+                    JObject obj = JObject.Parse(msg.MessageString);
+                    if (obj.Property("method") == null || obj.Property("method").ToString() == "")
+                    { // 服务器主动发送的消息
+
+                    }
+                    else
+                    {
+                        if (obj.Property("success") != null
+                            && obj.Property("success").ToString() != ""
+                            && obj.Property("success").Value.ToString() == "False")
+                        {
+                            MessageBox.Show(obj.Property("reason").Value.ToString());
+                        }
+                    }
+                };
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new BeginDialog());
+                client.Disconnect();
+            }
+            catch (SocketException)
+            {
+                MessageBox.Show("网络连接失败，请重试");
+            }
         }
 
         public static void SendMessage(string message)
@@ -50,12 +76,14 @@ namespace DrawAndGuess_client_csharp
             client.WriteLine(message + '\n');
         }
 
-        public static void RegisterMessageHandler(MessageHandler handler) 
+        public static void RegisterMessageHandler(Control control, MessageHandler handler)
         {
             handlers.Add(handler);
 
-            System.EventHandler<SimpleTCP.Message> lambda 
-                = (sender, msg) => handler.HandleMessage(msg.MessageString);
+            System.EventHandler<SimpleTCP.Message> lambda
+                = (sender, msg) => control.BeginInvoke(
+                    new UIHandler(() => handler.HandleMessage(msg.MessageString))
+                );
 
             lambdas.Add(lambda);
 
