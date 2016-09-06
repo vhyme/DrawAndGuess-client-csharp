@@ -22,5 +22,15 @@ namespace DrawAndGuess_client_csharp
         {
             new CreateDlg().ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new JoinDlg().ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

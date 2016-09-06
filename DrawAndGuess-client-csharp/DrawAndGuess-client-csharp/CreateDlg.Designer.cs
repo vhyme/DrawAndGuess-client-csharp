@@ -49,18 +49,18 @@
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(78, 214);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 15);
+            this.label1.Size = new System.Drawing.Size(111, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Your Name ID";
+            this.label1.Text = "Your Nickname";
             // 
             // btnSubmit
             // 
             this.btnSubmit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSubmit.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubmit.Location = new System.Drawing.Point(82, 301);
+            this.btnSubmit.Location = new System.Drawing.Point(81, 301);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(172, 44);
+            this.btnSubmit.Size = new System.Drawing.Size(175, 44);
             this.btnSubmit.TabIndex = 2;
             this.btnSubmit.Text = "Create Room";
             this.btnSubmit.UseVisualStyleBackColor = false;
