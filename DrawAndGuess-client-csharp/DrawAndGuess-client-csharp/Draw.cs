@@ -16,7 +16,7 @@ namespace DrawAndGuess_client_csharp
         Bitmap originImg;
         Image finishImg;
         Graphics g;
-        //DrawType dType;
+        DrawType dType;
         Point StartPoint, EndPoint, FontPoint;
         Pen p = new Pen(Color.Black, 1);
         bool IsDraw;
@@ -37,14 +37,16 @@ namespace DrawAndGuess_client_csharp
         {
             set { p.Width = value; }
         }
-        
-        
+
+
+
+
         public Draw()
         {
             InitializeComponent();
-            //cmbThickness.SelectedIndex = 0;
+            cmbThickness.SelectedIndex = 0;
             //将文本输入框的父容器设为picDraw，否则显示时会出现错位  
-            //txtWrite.Parent = picDraw;
+            txtWrite.Parent = picDraw;
 
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.UpdateStyles();
@@ -59,7 +61,205 @@ namespace DrawAndGuess_client_csharp
             g.Clear(Color.White);
 
             picDraw.Image = originImg;
-            finishImg = (Image)originImg.Clone();  
+            finishImg = (Image)originImg.Clone();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dType = DrawType.Line;
+            txtWrite.Visible = false;
+            txtWrite.Text = "";
+        }
+       
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dType = DrawType.Eraser;
+            txtWrite.Visible = false;
+            txtWrite.Text = "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            txtWrite.Visible = false;
+            txtWrite.Text = "";
+            g.Clear(Color.White);
+            reDraw();
+        }
+
+        private void picDraw_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                IsDraw = true;
+                StartPoint = e.Location;
+                switch (dType)
+                {
+                    case DrawType.Pen:
+                    case DrawType.Eraser:
+                        finishImg = (Image)originImg.Clone();
+                        break;
+                    case DrawType.Write: //隐藏写字框    
+                        if (!txtWrite.Bounds.Contains(StartPoint))
+                        {
+                            txtWrite.Visible = false;
+                            DrawString(txtWrite.Text);
+                            txtWrite.Text = "";
+                            return;
+                        }
+                        break;
+                }
+            }
+        }
+
+        private void picDraw_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (IsDraw)
+            {
+                EndPoint = e.Location;
+                if (dType != DrawType.Pen && dType != DrawType.Eraser)
+                {
+                    finishImg = (Image)originImg.Clone();
+                }
+                g = Graphics.FromImage(finishImg);
+                g.SmoothingMode = SmoothingMode.AntiAlias; //抗锯齿  
+                switch (dType)
+                {
+                    case DrawType.Line:
+                        g.DrawLine(p, StartPoint, EndPoint);
+                        break;
+                    case DrawType.Pen:
+                        g.DrawLine(p, StartPoint, EndPoint);
+                        StartPoint = EndPoint;
+                        break;
+                    case DrawType.Rect:
+                        Point leftTop = new Point(StartPoint.X, StartPoint.Y);
+                        int width = Math.Abs(StartPoint.X - e.X), height = Math.Abs(StartPoint.Y - e.Y);
+                        if (e.X < StartPoint.X)
+                            leftTop.X = e.X;
+                        if (e.Y < StartPoint.Y)
+                            leftTop.Y = e.Y;
+                        Rectangle rect = new Rectangle(leftTop, new Size(width, height));
+                        g.DrawRectangle(p, rect);
+                        break;
+                    case DrawType.Ellipse:
+                        leftTop = new Point(StartPoint.X, StartPoint.Y);
+                        int Ewidth = Math.Abs(StartPoint.X - e.X), Eheight = Math.Abs(StartPoint.Y - e.Y);
+                        if (e.X < StartPoint.X)
+                            leftTop.X = e.X;
+                        if (e.Y < StartPoint.Y)
+                            leftTop.Y = e.Y;
+                        rect = new Rectangle(leftTop, new Size(Ewidth, Eheight));
+                        g.DrawEllipse(p, rect);
+                        break;
+                    case DrawType.Eraser:
+                        Pen pen1 = new Pen(Color.White, 20);
+                        pen1.StartCap = LineCap.Round;
+                        pen1.StartCap = LineCap.Round;
+                        g.DrawLine(pen1, StartPoint, EndPoint);
+                        StartPoint = EndPoint;
+                        pen1.Dispose();
+                        break;
+                    case DrawType.Write:  //写字前画虚线框  
+                        leftTop = new Point(StartPoint.X, StartPoint.Y);
+                        int w = Math.Abs(StartPoint.X - e.X);
+                        int h = Math.Abs(StartPoint.Y - e.Y);
+                        if (e.X < StartPoint.X)
+                            leftTop.X = e.X;
+                        if (e.Y < StartPoint.Y)
+                            leftTop.Y = e.Y;
+                        FontRect = new Rectangle(leftTop, new Size(w, h));
+                        Pen pRect = new Pen(Color.Black);
+                        pRect.DashPattern = new float[] { 4.0F, 2.0F, 1.0F, 3.0F };
+                        g.DrawRectangle(pRect, FontRect);
+                        pRect.Dispose();
+                        break;
+                }
+                reDraw();
+            }
+        }
+
+        private void picDraw_MouseUp(object sender, MouseEventArgs e)
+        {
+            IsDraw = false;
+            originImg = (Bitmap)finishImg;
+            if (dType == DrawType.Write)
+            {
+                //清除虚线框  
+                Pen pRect = new Pen(Color.White);
+                g.DrawRectangle(pRect, FontRect);
+                pRect.Dispose();
+
+                //写字文本框 呈现  
+                txtWrite.SetBounds(FontRect.Left, FontRect.Top, FontRect.Width, FontRect.Height);
+                txtWrite.Font = font;
+                FontPoint = FontRect.Location;
+                txtWrite.Visible = true;
+                txtWrite.Focus();
+            }
+
+            //此句的作用是避免窗体最小化后还原窗体时，画布内容“丢失”  
+            //其实没有丢失，只是没刷新而已，读者可以在画布任意处作画，便可还原画布内容  
+            picDraw.Image = originImg;
+        }
+        /// <summary>  
+        /// 重绘绘图区（二次缓冲技术）  
+        /// </summary>  
+        private void reDraw()
+        {
+            Graphics graphics = picDraw.CreateGraphics();
+            graphics.DrawImage(finishImg, new Point(0, 0));
+            graphics.Dispose();
+        }
+        private void DrawString(string str)
+        {
+            g.DrawString(str, font, new SolidBrush(DrawColor), FontPoint);
+            reDraw();
+        }
+        /// <summary>  
+        /// 在画布 作画  
+        /// </summary>  
+        /// <param name="img"></param>  
+        private void DrawImage(Image img)
+        {
+            g = Graphics.FromImage(finishImg);
+            g.DrawImage(img, new Point(0, 0));
+            reDraw();
+        }
+
+        /// <summary>  
+        /// 画笔颜色设置  
+        /// </summary>  
+        /// <param name="sender"></param>  
+        /// <param name="e"></param>  
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.FullOpen = true;
+            cd.Color = DrawColor;
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                DrawColor = cd.Color;
+            }
+        }
+        /// <summary>  
+        /// 画笔宽度设置  
+        /// </summary>  
+        /// <param name="sender"></param>  
+        /// <param name="e"></param>  
+        private void cmbThickness_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PenWidth = Convert.ToSingle(cmbThickness.Text);
+        }  
+    }
+    enum DrawType
+    {
+        None,
+        Pen,
+        Line,
+        Rect,
+        Ellipse,
+        Eraser,
+        Write
     }
 }

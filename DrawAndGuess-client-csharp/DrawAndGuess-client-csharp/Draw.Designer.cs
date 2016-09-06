@@ -30,32 +30,120 @@
         private void InitializeComponent()
         {
             this.picDraw = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtWrite = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.cmbThickness = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).BeginInit();
             this.SuspendLayout();
             // 
             // picDraw
             // 
-            this.picDraw.Location = new System.Drawing.Point(171, 27);
+            this.picDraw.Location = new System.Drawing.Point(50, 12);
             this.picDraw.Name = "picDraw";
-            this.picDraw.Size = new System.Drawing.Size(422, 336);
+            this.picDraw.Size = new System.Drawing.Size(268, 243);
             this.picDraw.TabIndex = 0;
             this.picDraw.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(50, 294);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(45, 42);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtWrite
+            // 
+            this.txtWrite.Location = new System.Drawing.Point(131, 109);
+            this.txtWrite.Name = "txtWrite";
+            this.txtWrite.Size = new System.Drawing.Size(100, 21);
+            this.txtWrite.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(116, 294);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 42);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(187, 294);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(44, 42);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // cmbThickness
+            // 
+            this.cmbThickness.FormattingEnabled = true;
+            this.cmbThickness.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14"});
+            this.cmbThickness.Location = new System.Drawing.Point(247, 315);
+            this.cmbThickness.Name = "cmbThickness";
+            this.cmbThickness.Size = new System.Drawing.Size(71, 20);
+            this.cmbThickness.TabIndex = 5;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(247, 286);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // Draw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(653, 375);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.cmbThickness);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.txtWrite);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.picDraw);
             this.Name = "Draw";
             this.Text = "Draw";
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox picDraw;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtWrite;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ComboBox cmbThickness;
+        private System.Windows.Forms.Button button4;
     }
 }

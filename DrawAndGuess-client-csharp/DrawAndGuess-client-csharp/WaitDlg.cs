@@ -63,5 +63,11 @@ namespace DrawAndGuess_client_csharp
         {
             Program.UnregisterMessageHandler(this);
         }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            new Draw().ShowDialog();
+        }
+
     }
 }
