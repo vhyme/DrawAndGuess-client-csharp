@@ -108,7 +108,7 @@ namespace DrawAndGuess_client_csharp
             Program.RegisterMessageHandler(this);
         }
 
-        public void HandleMessage(string message)
+        virtual public void HandleMessage(string message)
         {
             // 此类不能设置抽象，否则会影响子类设计器的初始化，所以置空
         }
