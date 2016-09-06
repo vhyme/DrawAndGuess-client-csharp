@@ -28,18 +28,18 @@ namespace DrawAndGuess_client_csharp
         override public void HandleMessage(string message) 
         {
             JObject obj = JObject.Parse(message);
-            if (obj["method"] == null || (string) obj["method"] == "")
+            if (obj.Property("method") == null || obj.Property("method").ToString() == "")
             { // 服务器主动发送的消息
-                string _event = (string) obj["event"];
+                string _event = obj.Property("event").Value.ToString();
                 // 处理服务器消息
                 if (_event == "user_join")// 用户加入
                 {
-                    string nick = (string) obj["nick"];
+                    string nick = obj.Property("nick").Value.ToString();
                     listBox1.Items.Add(nick);
                 }
                 else if (_event == "user_exit")// 用户退出
                 {
-                    string nick = (string) obj["nick"];
+                    string nick = obj.Property("nick").Value.ToString();
                     listBox1.Items.Remove(nick);
                 }
                 else if (_event == "room_expire")// 房间解散
