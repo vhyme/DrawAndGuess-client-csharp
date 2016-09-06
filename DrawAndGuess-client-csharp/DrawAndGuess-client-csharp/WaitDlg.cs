@@ -32,12 +32,17 @@ namespace DrawAndGuess_client_csharp
             { // 服务器主动发送的消息
                 string _event = obj.Property("event").Value.ToString();
                 // 处理服务器消息
-                if (_event == "user_join")
+                if (_event == "user_join")// 用户加入
                 {
                     string nick = obj.Property("nick").Value.ToString();
                     listBox1.Items.Add(nick);
                 }
-                else if (_event == "user_exit")
+                else if (_event == "user_exit")// 用户退出
+                {
+                    string nick = obj.Property("nick").Value.ToString();
+                    listBox1.Items.Remove(nick);
+                }
+                else if (_event == "room_expire")// 房间解散
                 {
                     string nick = obj.Property("nick").Value.ToString();
                     listBox1.Items.Remove(nick);
