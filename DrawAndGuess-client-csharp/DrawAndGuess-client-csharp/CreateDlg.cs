@@ -18,10 +18,10 @@ namespace DrawAndGuess_client_csharp
         public CreateDlg()
         {
             InitializeComponent();
-            Program.RegisterMessageHandler(this);
+            Program.RegisterMessageHandler(this, this);
         }
 
-        ~CreateDlg() 
+        ~CreateDlg()
         {
             Program.UnregisterMessageHandler(this);
         }
@@ -55,8 +55,8 @@ namespace DrawAndGuess_client_csharp
                     if (obj.Property("success").Value.ToString() == "True")
                     {
                         int room = int.Parse(obj.Property("room").Value.ToString());
-                        WaitDlg dlg = new WaitDlg(room, new string[] { nick }, true);
 
+                        WaitDlg dlg = new WaitDlg(room, new string[] { nick }, true);
                         dlg.ShowDialog();
                     }
                 }

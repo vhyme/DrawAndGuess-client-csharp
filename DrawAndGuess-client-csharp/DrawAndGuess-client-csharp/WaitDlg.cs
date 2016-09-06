@@ -20,7 +20,7 @@ namespace DrawAndGuess_client_csharp
             btnStart.Enabled = isMaster;
             btnStart.Text = isMaster ? "Start Game" : "Waiting...";
 
-            Program.RegisterMessageHandler(this);
+            Program.RegisterMessageHandler(this, this);
             labelRoomNum.Text = "Room ID: " + room.ToString();
             listBox1.Items.AddRange(nicks);
         }
