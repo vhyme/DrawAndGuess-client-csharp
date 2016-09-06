@@ -18,5 +18,10 @@ namespace DrawAndGuess_client_csharp
             InitializeComponent();
             labelRoomNum.Text = "Room ID: " + room.ToString();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Draw().ShowDialog();
+        }
     }
 }
