@@ -46,6 +46,7 @@ namespace DrawAndGuess_client_csharp
                 {
                     MessageBox.Show("Room manager has disconnected. Game will now end.");
                     Close();
+                    Dispose();
                 }
             }
             else
