@@ -57,9 +57,9 @@ namespace DrawAndGuess_client_csharp
                 string method = (string) obj["method"];
                 if (method == "join_room")
                 {
-                    if (obj["success"] != null && (bool) obj["success"])
+                    if (obj["success"] != null && (bool) obj["success"] && obj["players"] != null)
                     {
-                        string[] nicks = (string[]) from str in obj["players"].Children() select (string) str;
+                        string[] nicks = (from str in obj["players"] select (string) str).ToArray();
 
                         WaitDlg dlg = new WaitDlg(room, nicks, false);
                         dlg.ShowDialog();
