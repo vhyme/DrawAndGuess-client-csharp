@@ -66,7 +66,7 @@ namespace DrawAndGuess_client_csharp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dType = DrawType.Pen;
+            dType = DrawType.Line;
             txtWrite.Visible = false;
             txtWrite.Text = "";
         }
@@ -85,45 +85,6 @@ namespace DrawAndGuess_client_csharp
             txtWrite.Text = "";
             g.Clear(Color.White);
             reDraw();
-        }
-
-        private void reDraw()
-        {
-            Graphics graphics = picDraw.CreateGraphics();
-            graphics.DrawImage(finishImg, new Point(0, 0));
-            graphics.Dispose();
-        }
-        private void DrawString(string str)
-        {
-            g.DrawString(str, font, new SolidBrush(DrawColor), FontPoint);
-            reDraw();
-        }
-
-
-        /// <summary>  
-        /// 画笔颜色设置  
-        /// </summary>  
-        /// <param name="sender"></param>  
-        /// <param name="e"></param>  
-        private void button4_Click(object sender, EventArgs e)
-        {
-            ColorDialog cd = new ColorDialog();
-            cd.FullOpen = true;
-            cd.Color = DrawColor;
-            if (cd.ShowDialog() == DialogResult.OK)
-            {
-                DrawColor = cd.Color;
-            }
-        }  
-        /// <summary>  
-        /// 画笔宽度设置  
-        /// </summary>  
-        /// <param name="sender"></param>  
-        /// <param name="e"></param>  
-
-        private void cmbThickness_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            PenWidth = Convert.ToSingle(cmbThickness.Text);
         }
 
         private void picDraw_MouseDown(object sender, MouseEventArgs e)
@@ -241,9 +202,55 @@ namespace DrawAndGuess_client_csharp
             //其实没有丢失，只是没刷新而已，读者可以在画布任意处作画，便可还原画布内容  
             picDraw.Image = originImg;
         }
+        /// <summary>  
+        /// 重绘绘图区（二次缓冲技术）  
+        /// </summary>  
+        private void reDraw()
+        {
+            Graphics graphics = picDraw.CreateGraphics();
+            graphics.DrawImage(finishImg, new Point(0, 0));
+            graphics.Dispose();
+        }
+        private void DrawString(string str)
+        {
+            g.DrawString(str, font, new SolidBrush(DrawColor), FontPoint);
+            reDraw();
+        }
+        /// <summary>  
+        /// 在画布 作画  
+        /// </summary>  
+        /// <param name="img"></param>  
+        private void DrawImage(Image img)
+        {
+            g = Graphics.FromImage(finishImg);
+            g.DrawImage(img, new Point(0, 0));
+            reDraw();
+        }
 
-
-
+        /// <summary>  
+        /// 画笔颜色设置  
+        /// </summary>  
+        /// <param name="sender"></param>  
+        /// <param name="e"></param>  
+        private void btnColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog cd = new ColorDialog();
+            cd.FullOpen = true;
+            cd.Color = DrawColor;
+            if (cd.ShowDialog() == DialogResult.OK)
+            {
+                DrawColor = cd.Color;
+            }
+        }
+        /// <summary>  
+        /// 画笔宽度设置  
+        /// </summary>  
+        /// <param name="sender"></param>  
+        /// <param name="e"></param>  
+        private void cmbThickness_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PenWidth = Convert.ToSingle(cmbThickness.Text);
+        }  
     }
     enum DrawType
     {
