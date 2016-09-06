@@ -11,19 +11,13 @@ using System.Windows.Forms;
 
 namespace DrawAndGuess_client_csharp
 {
-    public partial class JoinDlg : Form, MessageHandler
+    public partial class JoinDlg : NetworkingForm
     {
         private int room;
 
         public JoinDlg()
         {
             InitializeComponent();
-            Program.RegisterMessageHandler(this, this);
-        }
-
-        ~JoinDlg()
-        {
-            Program.UnregisterMessageHandler(this);
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -46,7 +40,7 @@ namespace DrawAndGuess_client_csharp
             Program.SendMessage("{\"method\": \"join_room\", \"room\": " + room + ", \"nick\": \"" + nick + "\"}");
         }
 
-        public void HandleMessage(string message)
+        override public void HandleMessage(string message)
         {
             JObject obj = JObject.Parse(message);
             if (obj["method"] == null)
@@ -57,9 +51,9 @@ namespace DrawAndGuess_client_csharp
                 string method = (string) obj["method"];
                 if (method == "join_room")
                 {
-                    if (obj["success"] != null && (bool) obj["success"])
+                    if (obj["success"] != null && (bool) obj["success"] && obj["players"] != null)
                     {
-                        string[] nicks = (string[]) from str in obj["players"].Children() select (string) str;
+                        string[] nicks = (from str in obj["players"] select (string) str).ToArray();
 
                         WaitDlg dlg = new WaitDlg(room, nicks, false);
                         dlg.ShowDialog();
