@@ -10,6 +10,25 @@ using System.Net.Sockets;
 
 namespace DrawAndGuess_client_csharp
 {
+    public class NetworkingForm : Form
+    {
+        public NetworkingForm()
+        {
+            Program.RegisterMessageHandler(this);
+        }
+
+        virtual public void HandleMessage(string message)
+        {
+            // 此类不能设置抽象，否则会影响子类设计器的初始化，所以置空
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            Program.UnregisterMessageHandler(this);
+            base.Dispose(disposing);
+        }
+    }
+
     static class Program
     {
         public delegate void UIHandler();
@@ -99,24 +118,6 @@ namespace DrawAndGuess_client_csharp
             lambdas.RemoveAt(index);
 
             Program.client.DelimiterDataReceived -= lambda;
-        }
-    }
-    public class NetworkingForm : Form
-    {
-        public NetworkingForm()
-        {
-            Program.RegisterMessageHandler(this);
-        }
-
-        virtual public void HandleMessage(string message)
-        {
-            // 此类不能设置抽象，否则会影响子类设计器的初始化，所以置空
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            Program.UnregisterMessageHandler(this);
-            base.Dispose(disposing);
         }
     }
 }
