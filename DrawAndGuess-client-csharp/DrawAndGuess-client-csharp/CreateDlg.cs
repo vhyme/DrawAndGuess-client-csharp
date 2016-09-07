@@ -42,10 +42,8 @@ namespace DrawAndGuess_client_csharp
         public void HandleMessage(string message)
         {
             JObject obj = JObject.Parse(message);
-            if (obj.Property("method") == null || obj.Property("method").ToString() == "")
-            { // 服务器主动发送的消息
-                string _event = obj.Property("event").Value.ToString();
-                // 处理服务器消息
+            if (obj["method"] == null || (string) obj["method"] == "")
+            {
             }
             else
             {
