@@ -68,11 +68,11 @@
     <Compile Include="JoinDlg.Designer.cs">
       <DependentUpon>JoinDlg.cs</DependentUpon>
     </Compile>
-    <Compile Include="Draw.cs">
+    <Compile Include="DrawDlg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Draw.Designer.cs">
-      <DependentUpon>Draw.cs</DependentUpon>
+    <Compile Include="DrawDlg.Designer.cs">
+      <DependentUpon>DrawDlg.cs</DependentUpon>
     </Compile>
     <Compile Include="MessageHandler.cs" />
     <Compile Include="Program.cs" />
@@ -92,8 +92,8 @@
     <EmbeddedResource Include="JoinDlg.resx">
       <DependentUpon>JoinDlg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Draw.resx">
-      <DependentUpon>Draw.cs</DependentUpon>
+    <EmbeddedResource Include="DrawDlg.resx">
+      <DependentUpon>DrawDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

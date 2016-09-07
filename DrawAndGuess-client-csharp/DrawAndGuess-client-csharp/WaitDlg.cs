@@ -13,6 +13,7 @@ namespace DrawAndGuess_client_csharp
 {
     public partial class WaitDlg : Form, MessageHandler
     {
+        private int room;
 
         public WaitDlg(int room, string[] nicks, bool isMaster)
         {
@@ -22,6 +23,7 @@ namespace DrawAndGuess_client_csharp
             btnStart.Enabled = isMaster;
             btnStart.Text = isMaster ? "Start Game" : "Waiting...";
 
+            this.room = room;
             labelRoomNum.Text = "Room ID: " + room.ToString();
             listBox1.Items.AddRange(nicks);
         }
@@ -34,18 +36,18 @@ namespace DrawAndGuess_client_csharp
         public void HandleMessage(string message) 
         {
             JObject obj = JObject.Parse(message);
-            if (obj.Property("method") == null || obj.Property("method").ToString() == "")
+            if (obj["method"] == null || (string) obj["method"] == "")
             { // 服务器主动发送的消息
-                string _event = obj.Property("event").Value.ToString();
+                string _event = (string) obj["event"];
                 // 处理服务器消息
                 if (_event == "user_join")// 用户加入
                 {
-                    string nick = obj.Property("nick").Value.ToString();
+                    string nick = (string) obj["nick"];
                     listBox1.Items.Add(nick);
                 }
                 else if (_event == "user_exit")// 用户退出
                 {
-                    string nick = obj.Property("nick").Value.ToString();
+                    string nick = (string) obj["nick"];
                     listBox1.Items.Remove(nick);
                 }
                 else if (_event == "room_expire")// 房间解散
@@ -54,26 +56,18 @@ namespace DrawAndGuess_client_csharp
                     Close();
                     Dispose();
                 }
-            }
-            else
-            {
-                /*string method = obj.Property("method").Value.ToString();
-                if (method == "create_room")
+                else if (_event == "game_start")// 房间解散
                 {
-                    if (obj.Property("success").Value.ToString() == "True")
-                    {
-                        int room = int.Parse(obj.Property("room").Value.ToString());
-                        WaitDlg dlg = new WaitDlg(room, new string[] { nick });
-
-                        dlg.ShowDialog();
-                    }
-                }*/
+                    int count = listBox1.Items.Count;
+                    string[] members = (from str in obj["players"] select (string)str).ToArray();
+                    new DrawDlg(room, members).ShowDialog();
+                }
             }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            new Draw().ShowDialog();
+            Program.SendMessage("{\"method\": \"start_game\"}");
         }
     }
 }
