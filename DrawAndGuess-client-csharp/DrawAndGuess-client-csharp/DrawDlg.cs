@@ -195,7 +195,7 @@ namespace DrawAndGuess_client_csharp
                         listView1.Items.Add(item);
                     }
                 }
-                else if (_event == "generate_word")
+                if (_event == "generate_word")
                 {
                     isDrawer = true;
                     string word = (string)obj["word"];
@@ -211,7 +211,6 @@ namespace DrawAndGuess_client_csharp
                         }
                     }
                     LinePrintMessage("词语已生成：[" + word + "]，你现在是画图者，请开始画图。");
-                    StartTimer();
                 }
                 else if (_event == "word_generated")
                 {
@@ -229,15 +228,6 @@ namespace DrawAndGuess_client_csharp
                         }
                     }
                     LinePrintMessage("词语已生成，请\"" + drawerNick + "\"画图。");
-                    StartTimer();
-                }
-                else if (_event == "time_up")
-                {
-                    LinePrintMessage("本局游戏结束");
-
-                    g.Clear(Color.White);
-                    reDraw();
-                    isDrawer = false;
                 }
             }
         }
@@ -275,7 +265,7 @@ namespace DrawAndGuess_client_csharp
                 timer.Stop();
             }
 
-            seconds = 10;
+            seconds = 60;
             UpdateTimer();
             timer = new System.Timers.Timer();  
             timer.Enabled = true;  
@@ -287,31 +277,22 @@ namespace DrawAndGuess_client_csharp
         protected void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             seconds--;
-            UpdateTimer();
             if (seconds <= 0 && timer != null)
             {
                 timer.Stop();
-                OnTimeUp();
             }
             UpdateTimer();
         }
-
-        protected void OnTimeUp()
-        {
-            Program.SendMessage("{\"method\": \"time_up\"}");
-        }
-
-        public delegate void UIHandler();
 
         protected void UpdateTimer()
         {
             if (seconds <= 0)
             {
-                BeginInvoke(new UIHandler(() => lblTimer.Text = ""));
+                lblTimer.Text = "";
             }
-            else
+            else 
             {
-                BeginInvoke(new UIHandler(() => lblTimer.Text = "剩余时间：" + seconds + "秒"));
+                lblTimer.Text = "剩余时间：" + seconds + "秒";
             }
         }
     }
