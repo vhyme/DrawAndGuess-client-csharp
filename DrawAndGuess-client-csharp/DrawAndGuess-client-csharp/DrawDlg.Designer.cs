@@ -32,18 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrawDlg));
             this.picDraw = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.txtWrite = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.cmbThickness = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.clmIcon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmNick = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmIcon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,34 +61,25 @@
             // 
             // button1
             // 
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(75, 466);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 67);
+            this.button1.Size = new System.Drawing.Size(81, 67);
             this.button1.TabIndex = 1;
             this.button1.Text = "Pen";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // txtWrite
-            // 
-            this.txtWrite.Location = new System.Drawing.Point(196, 144);
-            this.txtWrite.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtWrite.Name = "txtWrite";
-            this.txtWrite.Size = new System.Drawing.Size(148, 27);
-            this.txtWrite.TabIndex = 2;
-            this.txtWrite.Visible = false;
-            // 
             // button2
             // 
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(312, 466);
+            this.button2.Location = new System.Drawing.Point(289, 466);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 67);
+            this.button2.Size = new System.Drawing.Size(81, 67);
             this.button2.TabIndex = 3;
             this.button2.Text = "Eraser";
             this.button2.UseVisualStyleBackColor = true;
@@ -98,7 +87,7 @@
             // 
             // button3
             // 
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(396, 466);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -109,38 +98,14 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // cmbThickness
-            // 
-            this.cmbThickness.FormattingEnabled = true;
-            this.cmbThickness.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14"});
-            this.cmbThickness.Location = new System.Drawing.Point(154, 506);
-            this.cmbThickness.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbThickness.Name = "cmbThickness";
-            this.cmbThickness.Size = new System.Drawing.Size(97, 27);
-            this.cmbThickness.TabIndex = 5;
-            // 
             // button4
             // 
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(154, 466);
+            this.button4.Location = new System.Drawing.Point(182, 466);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(97, 41);
+            this.button4.Size = new System.Drawing.Size(81, 67);
             this.button4.TabIndex = 6;
             this.button4.Text = "Color";
             this.button4.UseVisualStyleBackColor = true;
@@ -171,7 +136,6 @@
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Location = new System.Drawing.Point(847, 506);
             this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
@@ -192,6 +156,11 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // clmIcon
+            // 
+            this.clmIcon.Text = "";
+            this.clmIcon.Width = 36;
+            // 
             // clmNick
             // 
             this.clmNick.Text = "Nick";
@@ -201,11 +170,6 @@
             // 
             this.clmScore.Text = "Score";
             this.clmScore.Width = 70;
-            // 
-            // clmIcon
-            // 
-            this.clmIcon.Text = "";
-            this.clmIcon.Width = 36;
             // 
             // DrawDlg
             // 
@@ -217,10 +181,8 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.cmbThickness);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.txtWrite);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.picDraw);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -236,10 +198,8 @@
 
         private System.Windows.Forms.PictureBox picDraw;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtWrite;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ComboBox cmbThickness;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;

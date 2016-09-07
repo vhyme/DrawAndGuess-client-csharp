@@ -16,11 +16,10 @@ namespace DrawAndGuess_client_csharp
         Bitmap originImg;
         Image finishImg;
         Graphics g;
-        DrawType dType;
+        DrawType dType = DrawType.Pen;
         Point StartPoint, EndPoint, FontPoint;
         Pen p = new Pen(Color.Black, 1);
         bool IsDraw;
-        Font font;
         Rectangle FontRect;
         /// <summary>  
         /// 画笔颜色  
@@ -41,9 +40,6 @@ namespace DrawAndGuess_client_csharp
         public DrawDlg(int room, string[] members)
         {
             InitializeComponent();
-            cmbThickness.SelectedIndex = 0;
-            //将文本输入框的父容器设为picDraw，否则显示时会出现错位  
-            txtWrite.Parent = picDraw;
 
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.UpdateStyles();
@@ -64,22 +60,16 @@ namespace DrawAndGuess_client_csharp
         private void button1_Click(object sender, EventArgs e)
         {
             dType = DrawType.Pen;
-            txtWrite.Visible = false;
-            txtWrite.Text = "";
         }
        
 
         private void button2_Click(object sender, EventArgs e)
         {
             dType = DrawType.Eraser;
-            txtWrite.Visible = false;
-            txtWrite.Text = "";
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            txtWrite.Visible = false;
-            txtWrite.Text = "";
             g.Clear(Color.White);
             reDraw();
         }
@@ -89,11 +79,6 @@ namespace DrawAndGuess_client_csharp
             Graphics graphics = picDraw.CreateGraphics();
             graphics.DrawImage(finishImg, new Point(0, 0));
             graphics.Dispose();
-        }
-        private void DrawString(string str)
-        {
-            g.DrawString(str, font, new SolidBrush(DrawColor), FontPoint);
-            reDraw();
         }
 
 
@@ -118,33 +103,13 @@ namespace DrawAndGuess_client_csharp
         /// <param name="sender"></param>  
         /// <param name="e"></param>  
 
-        private void cmbThickness_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            PenWidth = Convert.ToSingle(cmbThickness.Text);
-        }
-
         private void picDraw_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
                 IsDraw = true;
                 StartPoint = e.Location;
-                switch (dType)
-                {
-                    case DrawType.Pen:
-                    case DrawType.Eraser:
-                        finishImg = (Image)originImg.Clone();
-                        break;
-                    case DrawType.Write: //隐藏写字框    
-                        if (!txtWrite.Bounds.Contains(StartPoint))
-                        {
-                            txtWrite.Visible = false;
-                            DrawString(txtWrite.Text);
-                            txtWrite.Text = "";
-                            return;
-                        }
-                        break;
-                }
+                finishImg = (Image)originImg.Clone();
             }
         }
 
@@ -225,13 +190,6 @@ namespace DrawAndGuess_client_csharp
                 Pen pRect = new Pen(Color.White);
                 g.DrawRectangle(pRect, FontRect);
                 pRect.Dispose();
-
-                //写字文本框 呈现  
-                txtWrite.SetBounds(FontRect.Left, FontRect.Top, FontRect.Width, FontRect.Height);
-                txtWrite.Font = font;
-                FontPoint = FontRect.Location;
-                txtWrite.Visible = true;
-                txtWrite.Focus();
             }
 
             //此句的作用是避免窗体最小化后还原窗体时，画布内容“丢失”  

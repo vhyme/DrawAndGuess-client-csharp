@@ -38,19 +38,17 @@
             // 
             this.labelRoomNum.AutoSize = true;
             this.labelRoomNum.BackColor = System.Drawing.Color.Transparent;
-            this.labelRoomNum.Location = new System.Drawing.Point(187, 9);
-            this.labelRoomNum.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelRoomNum.Location = new System.Drawing.Point(280, 14);
             this.labelRoomNum.Name = "labelRoomNum";
-            this.labelRoomNum.Size = new System.Drawing.Size(53, 12);
+            this.labelRoomNum.Size = new System.Drawing.Size(75, 19);
             this.labelRoomNum.TabIndex = 0;
             this.labelRoomNum.Text = "Room ID:";
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(281, 207);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Location = new System.Drawing.Point(422, 328);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(81, 22);
+            this.btnStart.Size = new System.Drawing.Size(122, 35);
             this.btnStart.TabIndex = 2;
             this.btnStart.Text = "Start Game";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -61,25 +59,23 @@
             this.listBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(189, 36);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listBox1.ItemHeight = 19;
+            this.listBox1.Location = new System.Drawing.Point(284, 57);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(173, 156);
+            this.listBox1.Size = new System.Drawing.Size(260, 247);
             this.listBox1.TabIndex = 3;
             // 
             // WaitDlg
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(518, 240);
+            this.ClientSize = new System.Drawing.Size(777, 380);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.labelRoomNum);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "WaitDlg";
             this.Text = "WaitDlg";
             this.ResumeLayout(false);

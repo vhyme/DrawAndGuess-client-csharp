@@ -21,8 +21,8 @@ namespace DrawAndGuess_client_csharp
         private static List<System.EventHandler<SimpleTCP.Message>> lambdas =
             new List<System.EventHandler<SimpleTCP.Message>>();
 
-        //[DllImport("user32.dll")]
-        //private static extern void SetProcessDPIAware(); 
+        [DllImport("user32.dll")]
+        private static extern void SetProcessDPIAware(); 
 
         /// <summary>
         /// 应用程序的主入口点。
@@ -30,7 +30,7 @@ namespace DrawAndGuess_client_csharp
         [STAThread]
         public static void Main()
         {
-            //SetProcessDPIAware();
+            SetProcessDPIAware();
             try
             {
                 client = new SimpleTcpClient().Connect("139.129.4.219", 8082);
