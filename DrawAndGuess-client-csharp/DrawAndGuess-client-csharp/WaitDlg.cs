@@ -16,9 +16,8 @@ namespace DrawAndGuess_client_csharp
 
         public WaitDlg(int room, string[] nicks, bool isMaster)
         {
-            Program.RegisterMessageHandler(this, this);
-
             InitializeComponent();
+            Program.RegisterMessageHandler(this, this);
 
             btnStart.Enabled = isMaster;
             btnStart.Text = isMaster ? "Start Game" : "Waiting...";

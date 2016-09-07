@@ -81,9 +81,19 @@ namespace DrawAndGuess_client_csharp
             handlers.Add(handler);
 
             System.EventHandler<SimpleTCP.Message> lambda
-                = (sender, msg) => control.BeginInvoke(
-                    new UIHandler(() => handler.HandleMessage(msg.MessageString))
-                );
+                = (sender, msg) =>
+                {
+                    try
+                    {
+                        control.BeginInvoke(
+                            new UIHandler(() => handler.HandleMessage(msg.MessageString))
+                        );
+                    }
+                    catch
+                    { 
+                        // do nothing
+                    }
+                };
 
             lambdas.Add(lambda);
 
