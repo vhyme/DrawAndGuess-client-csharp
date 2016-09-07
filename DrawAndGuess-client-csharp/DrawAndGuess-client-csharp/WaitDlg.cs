@@ -15,7 +15,9 @@ namespace DrawAndGuess_client_csharp
     {
         private int room;
 
-        public WaitDlg(int room, string[] nicks, bool isMaster)
+        private string nick;
+
+        public WaitDlg(int room, string nick, string[] nicks, bool isMaster)
         {
             InitializeComponent();
             Program.RegisterMessageHandler(this, this);
@@ -24,6 +26,7 @@ namespace DrawAndGuess_client_csharp
             btnStart.Text = isMaster ? "Start Game" : "Waiting...";
 
             this.room = room;
+            this.nick = nick;
             labelRoomNum.Text = "Room ID: " + room.ToString();
             listBox1.Items.AddRange(nicks);
         }
@@ -56,18 +59,15 @@ namespace DrawAndGuess_client_csharp
                     Close();
                     Dispose();
                 }
-                else if (_event == "game_start")// 房间解散
-                {
-                    int count = listBox1.Items.Count;
-                    string[] members = (from str in obj["players"] select (string)str).ToArray();
-                    new DrawDlg(room, members).ShowDialog();
-                }
             }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Program.SendMessage("{\"method\": \"start_game\"}");
+            int count = listBox1.Items.Count;
+            new DrawDlg(room, nick).ShowDialog();
+            Close();
+            Dispose();
         }
     }
 }

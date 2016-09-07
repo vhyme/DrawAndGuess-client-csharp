@@ -54,7 +54,7 @@ namespace DrawAndGuess_client_csharp
                     {
                         int room = int.Parse(obj.Property("room").Value.ToString());
 
-                        WaitDlg dlg = new WaitDlg(room, new string[] { nick }, true);
+                        WaitDlg dlg = new WaitDlg(room, nick, new string[] { nick }, true);
                         dlg.ShowDialog();
                     }
                 }

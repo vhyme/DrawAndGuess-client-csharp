@@ -77,7 +77,7 @@
             this.Controls.Add(this.labelRoomNum);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WaitDlg";
-            this.Text = "WaitDlg";
+            this.Text = "你画我猜 - 等待游戏开始";
             this.ResumeLayout(false);
             this.PerformLayout();
 

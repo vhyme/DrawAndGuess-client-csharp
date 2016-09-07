@@ -39,9 +39,10 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.clmIcon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmNick = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmDrawing = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblTimer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(42, 42);
             this.button3.TabIndex = 4;
-            this.button3.Text = "Delete";
+            this.button3.Text = "Clear";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -114,13 +115,15 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(373, 213);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.textBox1.Location = new System.Drawing.Point(560, 337);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(224, 96);
             this.textBox1.TabIndex = 7;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -145,7 +148,7 @@
             // 
             this.listView1.BackColor = System.Drawing.SystemColors.MenuBar;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.clmIcon,
+            this.clmDrawing,
             this.clmNick,
             this.clmScore});
             this.listView1.Location = new System.Drawing.Point(373, 44);
@@ -171,6 +174,21 @@
             this.clmScore.Text = "Score";
             this.clmScore.Width = 70;
             // 
+            // clmDrawing
+            // 
+            this.clmDrawing.Text = "Drawing";
+            this.clmDrawing.Width = 70;
+            // 
+            // lblTimer
+            // 
+            this.lblTimer.AutoSize = true;
+            this.lblTimer.Location = new System.Drawing.Point(410, 36);
+            this.lblTimer.Name = "lblTimer";
+            this.lblTimer.Size = new System.Drawing.Size(67, 19);
+            this.lblTimer.TabIndex = 12;
+            this.lblTimer.Text = "剩余时间";
+            this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // DrawDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -178,6 +196,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(653, 375);
+            this.ClientSize = new System.Drawing.Size(980, 594);
+            this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox2);
@@ -206,8 +226,9 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader clmIcon;
         private System.Windows.Forms.ColumnHeader clmNick;
         private System.Windows.Forms.ColumnHeader clmScore;
+        private System.Windows.Forms.ColumnHeader clmDrawing;
+        private System.Windows.Forms.Label lblTimer;
     }
 }

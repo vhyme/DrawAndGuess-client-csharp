@@ -101,7 +101,7 @@
             this.Controls.Add(this.tbxRoomId);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "JoinDlg";
-            this.Text = "JOIN ROOM";
+            this.Text = "你画我猜 - 加入房间";
             this.ResumeLayout(false);
             this.PerformLayout();
 
