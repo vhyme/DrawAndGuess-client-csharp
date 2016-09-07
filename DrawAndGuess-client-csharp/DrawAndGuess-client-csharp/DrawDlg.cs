@@ -239,6 +239,11 @@ namespace DrawAndGuess_client_csharp
             picDraw.Image = originImg;
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }

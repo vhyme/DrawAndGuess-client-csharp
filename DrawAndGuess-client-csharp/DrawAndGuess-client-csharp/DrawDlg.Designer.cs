@@ -49,10 +49,12 @@
             // 
             // picDraw
             // 
+            this.picDraw.BackColor = System.Drawing.Color.White;
+            this.picDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picDraw.Location = new System.Drawing.Point(75, 70);
             this.picDraw.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picDraw.Name = "picDraw";
-            this.picDraw.Size = new System.Drawing.Size(402, 385);
+            this.picDraw.Size = new System.Drawing.Size(402, 377);
             this.picDraw.TabIndex = 0;
             this.picDraw.TabStop = false;
             this.picDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picDraw_MouseDown);
@@ -61,11 +63,12 @@
             // 
             // button1
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(75, 466);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 65);
+            this.button1.Size = new System.Drawing.Size(68, 67);
             this.button1.TabIndex = 1;
             this.button1.Text = "Pen";
             this.button1.UseVisualStyleBackColor = true;
@@ -82,7 +85,8 @@
             // 
             // button2
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(312, 466);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
@@ -94,7 +98,8 @@
             // 
             // button3
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(396, 466);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
@@ -127,11 +132,11 @@
             this.cmbThickness.Name = "cmbThickness";
             this.cmbThickness.Size = new System.Drawing.Size(97, 27);
             this.cmbThickness.TabIndex = 5;
-            this.cmbThickness.SelectedIndexChanged += new System.EventHandler(this.cmbThickness_SelectedIndexChanged_1);
             // 
             // button4
             // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(154, 466);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
@@ -143,13 +148,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(560, 336);
+            this.textBox1.Location = new System.Drawing.Point(560, 337);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(334, 150);
             this.textBox1.TabIndex = 7;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -164,7 +170,8 @@
             // 
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Location = new System.Drawing.Point(847, 506);
             this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
