@@ -40,7 +40,6 @@ namespace DrawAndGuess_client_csharp
         public DrawDlg(int room, string[] members)
         {
             InitializeComponent();
-
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.UpdateStyles();
 
