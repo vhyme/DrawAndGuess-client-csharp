@@ -187,7 +187,7 @@ namespace DrawAndGuess_client_csharp
 
                 if (_event == "game_start")
                 {
-                    listView1.Items.Clear();
+                    listView1.Clear();
                     string[] members = (from str in obj["players"] select (string)str).ToArray();
                     foreach (string member in members)
                     {
