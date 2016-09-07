@@ -15,6 +15,8 @@ namespace DrawAndGuess_client_csharp
     {
         private int room;
 
+        private string nick;
+
         public JoinDlg()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace DrawAndGuess_client_csharp
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            string nick = tbxNick.Text;
+            nick = tbxNick.Text;
             try
             {
                 room = int.Parse(tbxRoomId.Text);
@@ -61,7 +63,7 @@ namespace DrawAndGuess_client_csharp
                     {
                         string[] nicks = (from str in obj["players"] select (string) str).ToArray();
 
-                        WaitDlg dlg = new WaitDlg(room, nicks, false);
+                        WaitDlg dlg = new WaitDlg(room, nick, nicks, false);
                         dlg.ShowDialog();
                     }
                 }

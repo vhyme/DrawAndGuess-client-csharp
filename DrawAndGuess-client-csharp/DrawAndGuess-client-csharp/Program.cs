@@ -78,11 +78,13 @@ namespace DrawAndGuess_client_csharp
 
         public static void RegisterMessageHandler(Control control, MessageHandler handler)
         {
+            Console.WriteLine("Registered " + control.GetType().ToString());
             handlers.Add(handler);
 
             System.EventHandler<SimpleTCP.Message> lambda
                 = (sender, msg) =>
                 {
+                    Console.WriteLine("Received " + control.GetType().ToString());
                     try
                     {
                         control.BeginInvoke(

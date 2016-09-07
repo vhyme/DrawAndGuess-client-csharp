@@ -87,7 +87,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "BeginDialog";
-            this.Text = "Draw And Guess";
+            this.Text = "你画我猜";
             this.ResumeLayout(false);
 
         }
