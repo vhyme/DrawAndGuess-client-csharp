@@ -39,9 +39,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.clmDrawing = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmNick = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmDrawing = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTimer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).BeginInit();
             this.SuspendLayout();
@@ -158,20 +158,20 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // clmDrawing
+            // 
+            this.clmDrawing.Text = "Drawing";
+            this.clmDrawing.Width = 58;
+            // 
             // clmNick
             // 
             this.clmNick.Text = "Nick";
-            this.clmNick.Width = 158;
+            this.clmNick.Width = 121;
             // 
             // clmScore
             // 
             this.clmScore.Text = "Score";
             this.clmScore.Width = 70;
-            // 
-            // clmDrawing
-            // 
-            this.clmDrawing.Text = "Drawing";
-            this.clmDrawing.Width = 70;
             // 
             // lblTimer
             // 
