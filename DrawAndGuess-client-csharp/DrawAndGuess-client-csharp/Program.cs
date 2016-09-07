@@ -10,32 +10,13 @@ using System.Net.Sockets;
 
 namespace DrawAndGuess_client_csharp
 {
-    public class NetworkingForm : Form
-    {
-        public NetworkingForm()
-        {
-            Program.RegisterMessageHandler(this);
-        }
-
-        virtual public void HandleMessage(string message)
-        {
-            // 此类不能设置抽象，否则会影响子类设计器的初始化，所以置空
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            Program.UnregisterMessageHandler(this);
-            base.Dispose(disposing);
-        }
-    }
-
     static class Program
     {
         public delegate void UIHandler();
 
         public static SimpleTcpClient client;
 
-        private static List<NetworkingForm> handlers = new List<NetworkingForm>();
+        private static List<MessageHandler> handlers = new List<MessageHandler>();
 
         private static List<System.EventHandler<SimpleTCP.Message>> lambdas =
             new List<System.EventHandler<SimpleTCP.Message>>();
@@ -95,12 +76,12 @@ namespace DrawAndGuess_client_csharp
             client.WriteLine(message + '\n');
         }
 
-        public static void RegisterMessageHandler(NetworkingForm handler)
+        public static void RegisterMessageHandler(Control control, MessageHandler handler)
         {
             handlers.Add(handler);
 
             System.EventHandler<SimpleTCP.Message> lambda
-                = (sender, msg) => handler.BeginInvoke(
+                = (sender, msg) => control.BeginInvoke(
                     new UIHandler(() => handler.HandleMessage(msg.MessageString))
                 );
 
@@ -109,7 +90,7 @@ namespace DrawAndGuess_client_csharp
             Program.client.DelimiterDataReceived += lambda;
         }
 
-        public static void UnregisterMessageHandler(NetworkingForm handler)
+        public static void UnregisterMessageHandler(MessageHandler handler)
         {
             int index = handlers.IndexOf(handler);
             handlers.RemoveAt(index);

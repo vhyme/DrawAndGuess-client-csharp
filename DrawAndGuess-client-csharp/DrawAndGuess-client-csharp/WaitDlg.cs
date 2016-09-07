@@ -11,11 +11,13 @@ using System.Windows.Forms;
 
 namespace DrawAndGuess_client_csharp
 {
-    public partial class WaitDlg : NetworkingForm
+    public partial class WaitDlg : Form, MessageHandler
     {
 
         public WaitDlg(int room, string[] nicks, bool isMaster)
         {
+            Program.RegisterMessageHandler(this, this);
+
             InitializeComponent();
 
             btnStart.Enabled = isMaster;
@@ -25,7 +27,12 @@ namespace DrawAndGuess_client_csharp
             listBox1.Items.AddRange(nicks);
         }
 
-        override public void HandleMessage(string message) 
+        ~WaitDlg()
+        {
+            Program.UnregisterMessageHandler(this);
+        }
+
+        public void HandleMessage(string message) 
         {
             JObject obj = JObject.Parse(message);
             if (obj.Property("method") == null || obj.Property("method").ToString() == "")
@@ -44,14 +51,9 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "room_expire")// 房间解散
                 {
-<<<<<<< HEAD
                     MessageBox.Show("Room manager has disconnected. Game will now end.");
                     Close();
                     Dispose();
-=======
-                    string nick = obj.Property("nick").Value.ToString();
-                    listBox1.Items.Remove(nick);
->>>>>>> parent of b8e6ac6... 添加房间解散的逻辑
                 }
             }
             else

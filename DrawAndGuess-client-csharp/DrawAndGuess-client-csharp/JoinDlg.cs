@@ -11,13 +11,19 @@ using System.Windows.Forms;
 
 namespace DrawAndGuess_client_csharp
 {
-    public partial class JoinDlg : NetworkingForm
+    public partial class JoinDlg : Form, MessageHandler
     {
         private int room;
 
         public JoinDlg()
         {
             InitializeComponent();
+            Program.RegisterMessageHandler(this, this);
+        }
+
+        ~JoinDlg()
+        {
+            Program.UnregisterMessageHandler(this);
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -40,7 +46,7 @@ namespace DrawAndGuess_client_csharp
             Program.SendMessage("{\"method\": \"join_room\", \"room\": " + room + ", \"nick\": \"" + nick + "\"}");
         }
 
-        override public void HandleMessage(string message)
+        public void HandleMessage(string message)
         {
             JObject obj = JObject.Parse(message);
             if (obj["method"] == null)
