@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DrawDlg));
             this.picDraw = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.txtWrite = new System.Windows.Forms.TextBox();
@@ -37,17 +38,21 @@
             this.cmbThickness = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.clmNick = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.clmIcon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).BeginInit();
             this.SuspendLayout();
             // 
             // picDraw
             // 
-            this.picDraw.Location = new System.Drawing.Point(50, 44);
+            this.picDraw.Location = new System.Drawing.Point(75, 70);
+            this.picDraw.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picDraw.Name = "picDraw";
-            this.picDraw.Size = new System.Drawing.Size(268, 243);
+            this.picDraw.Size = new System.Drawing.Size(402, 385);
             this.picDraw.TabIndex = 0;
             this.picDraw.TabStop = false;
             this.picDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picDraw_MouseDown);
@@ -56,9 +61,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(50, 294);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Location = new System.Drawing.Point(75, 466);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 41);
+            this.button1.Size = new System.Drawing.Size(68, 65);
             this.button1.TabIndex = 1;
             this.button1.Text = "Pen";
             this.button1.UseVisualStyleBackColor = true;
@@ -66,17 +73,20 @@
             // 
             // txtWrite
             // 
-            this.txtWrite.Location = new System.Drawing.Point(131, 91);
+            this.txtWrite.Location = new System.Drawing.Point(196, 144);
+            this.txtWrite.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtWrite.Name = "txtWrite";
-            this.txtWrite.Size = new System.Drawing.Size(100, 21);
+            this.txtWrite.Size = new System.Drawing.Size(148, 27);
             this.txtWrite.TabIndex = 2;
             this.txtWrite.Visible = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(207, 294);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Location = new System.Drawing.Point(312, 466);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(51, 42);
+            this.button2.Size = new System.Drawing.Size(76, 67);
             this.button2.TabIndex = 3;
             this.button2.Text = "Eraser";
             this.button2.UseVisualStyleBackColor = true;
@@ -84,9 +94,11 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(264, 293);
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.Location = new System.Drawing.Point(396, 466);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(54, 42);
+            this.button3.Size = new System.Drawing.Size(81, 67);
             this.button3.TabIndex = 4;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = true;
@@ -110,17 +122,20 @@
             "12",
             "13",
             "14"});
-            this.cmbThickness.Location = new System.Drawing.Point(101, 316);
+            this.cmbThickness.Location = new System.Drawing.Point(154, 506);
+            this.cmbThickness.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbThickness.Name = "cmbThickness";
-            this.cmbThickness.Size = new System.Drawing.Size(66, 20);
+            this.cmbThickness.Size = new System.Drawing.Size(97, 27);
             this.cmbThickness.TabIndex = 5;
             this.cmbThickness.SelectedIndexChanged += new System.EventHandler(this.cmbThickness_SelectedIndexChanged_1);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(101, 294);
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Location = new System.Drawing.Point(154, 466);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(66, 23);
+            this.button4.Size = new System.Drawing.Size(97, 41);
             this.button4.TabIndex = 6;
             this.button4.Text = "Color";
             this.button4.UseVisualStyleBackColor = true;
@@ -128,46 +143,71 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(373, 212);
+            this.textBox1.Location = new System.Drawing.Point(560, 336);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(223, 96);
+            this.textBox1.Size = new System.Drawing.Size(334, 150);
             this.textBox1.TabIndex = 7;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(373, 44);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(223, 148);
-            this.listBox1.TabIndex = 8;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(373, 314);
+            this.textBox2.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.textBox2.Location = new System.Drawing.Point(560, 506);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(193, 21);
+            this.textBox2.Size = new System.Drawing.Size(288, 27);
             this.textBox2.TabIndex = 9;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(572, 314);
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button5.Location = new System.Drawing.Point(847, 506);
+            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(24, 21);
+            this.button5.Size = new System.Drawing.Size(47, 27);
             this.button5.TabIndex = 10;
-            this.button5.Text = "&S";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // Draw
+            // listView1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.clmIcon,
+            this.clmNick,
+            this.clmScore});
+            this.listView1.Location = new System.Drawing.Point(560, 70);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(334, 248);
+            this.listView1.TabIndex = 11;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // clmNick
+            // 
+            this.clmNick.Text = "Nick";
+            this.clmNick.Width = 219;
+            // 
+            // clmScore
+            // 
+            this.clmScore.Text = "Score";
+            this.clmScore.Width = 70;
+            // 
+            // clmIcon
+            // 
+            this.clmIcon.Text = "";
+            this.clmIcon.Width = 36;
+            // 
+            // DrawDlg
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(653, 375);
+            this.ClientSize = new System.Drawing.Size(980, 594);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.cmbThickness);
@@ -176,7 +216,8 @@
             this.Controls.Add(this.txtWrite);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.picDraw);
-            this.Name = "Draw";
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Name = "DrawDlg";
             this.Text = "Draw";
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).EndInit();
             this.ResumeLayout(false);
@@ -194,8 +235,11 @@
         private System.Windows.Forms.ComboBox cmbThickness;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader clmIcon;
+        private System.Windows.Forms.ColumnHeader clmNick;
+        private System.Windows.Forms.ColumnHeader clmScore;
     }
 }
