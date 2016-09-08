@@ -194,13 +194,17 @@ namespace DrawAndGuess_client_csharp
             {
                 int compatX = /*(int)(*/e.Location.X/* * 100 / dpiX)*/;
                 int compatY = /*(int)(*/e.Location.Y/* * 100 / dpiY)*/;
-                OnDrawMove(compatX, compatY, dType == DrawType.Eraser);
-                Program.SendMessage("{\"method\": \"update_pic\""
-                    + ", \"x\": " + compatX.ToString()
-                    + ", \"y\": " + compatY.ToString()
-                    + ", \"new_line\": false"
-                    + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
-                    + "}");
+
+                if (compatX % 2 == 0 || compatY % 2 == 0)// 过滤一部分点以加快响应速度
+                {
+                    OnDrawMove(compatX, compatY, dType == DrawType.Eraser);
+                    Program.SendMessage("{\"method\": \"update_pic\""
+                        + ", \"x\": " + compatX.ToString()
+                        + ", \"y\": " + compatY.ToString()
+                        + ", \"new_line\": false"
+                        + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
+                        + "}");
+                }
             }
         }
 

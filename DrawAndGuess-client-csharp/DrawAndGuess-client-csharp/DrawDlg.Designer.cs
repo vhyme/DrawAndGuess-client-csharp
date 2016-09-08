@@ -136,7 +136,7 @@
             this.textBox2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.textBox2.Location = new System.Drawing.Point(385, 420);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(261, 26);
+            this.textBox2.Size = new System.Drawing.Size(261, 31);
             this.textBox2.TabIndex = 9;
             // 
             // button5
@@ -160,7 +160,7 @@
             this.clmNick,
             this.clmScore});
             this.listView1.Location = new System.Drawing.Point(385, 42);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(294, 166);
             this.listView1.TabIndex = 11;
@@ -189,7 +189,7 @@
             this.lblTimer.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.lblTimer.Location = new System.Drawing.Point(189, 30);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(65, 20);
+            this.lblTimer.Size = new System.Drawing.Size(80, 18);
             this.lblTimer.TabIndex = 12;
             this.lblTimer.Text = "剩余时间";
             this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -198,7 +198,7 @@
             // 
             this.btnStart.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnStart.Location = new System.Drawing.Point(50, 26);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(89, 28);
             this.btnStart.TabIndex = 13;
@@ -208,7 +208,7 @@
             // 
             // DrawDlg
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
@@ -229,6 +229,7 @@
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "DrawDlg";
             this.Text = "你画我猜-游戏房间";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DrawDlg_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
