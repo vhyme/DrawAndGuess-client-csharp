@@ -326,7 +326,6 @@ namespace DrawAndGuess_client_csharp
                     button4.Enabled = true;
 
                     string word = (string)obj["word"];
-
                     foreach (ListViewItem item in listView1.Items)
                     {
                         if (item.SubItems[1].Text == nick)
@@ -356,11 +355,11 @@ namespace DrawAndGuess_client_csharp
                     {
                         if (item.SubItems[1].Text == drawerNick)
                         {
-                            item.Name = "*";
+                            item.Text = "*";
                         }
                         else
                         {
-                            item.Name = "";
+                            item.Text = "";
                         }
                     }
                     LinePrintMessage("词语已生成，请\"" + drawerNick + "\"画图。");
