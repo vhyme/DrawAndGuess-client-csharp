@@ -92,13 +92,12 @@
             // button3
             // 
             this.button3.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(417, 467);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(62, 67);
             this.button3.TabIndex = 4;
-            this.button3.Text = "Clear";
+            this.button3.Text = "清空";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -142,7 +141,6 @@
             // 
             // button5
             // 
-            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.button5.Location = new System.Drawing.Point(848, 507);
@@ -150,6 +148,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(46, 27);
             this.button5.TabIndex = 10;
+            this.button5.Text = "发送";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -168,18 +167,18 @@
             // 
             // clmDrawing
             // 
-            this.clmDrawing.Text = "Drawing";
-            this.clmDrawing.Width = 70;
+            this.clmDrawing.Text = "状态";
+            this.clmDrawing.Width = 54;
             // 
             // clmNick
             // 
-            this.clmNick.Text = "Nick";
-            this.clmNick.Width = 158;
+            this.clmNick.Text = "昵称";
+            this.clmNick.Width = 141;
             // 
             // clmScore
             // 
-            this.clmScore.Text = "Score";
-            this.clmScore.Width = 70;
+            this.clmScore.Text = "分数";
+            this.clmScore.Width = 53;
             // 
             // lblTimer
             // 
@@ -218,9 +217,11 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.picDraw);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DrawDlg";
             this.Text = "Draw";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DrawDlg_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

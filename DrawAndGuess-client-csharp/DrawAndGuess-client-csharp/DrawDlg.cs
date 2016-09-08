@@ -81,6 +81,18 @@ namespace DrawAndGuess_client_csharp
             finishImg = (Image)originImg.Clone();
         }
 
+        /*protected override CreateParams CreateParams
+        {
+            get
+            {
+                int CS_NOCLOSE = 0x200;
+                CreateParams parameters = base.CreateParams;
+                parameters.ClassStyle |= CS_NOCLOSE;
+
+                return parameters;
+            }
+        }*/
+
         private void button1_Click(object sender, EventArgs e)
         {
             dType = DrawType.Pen;
@@ -128,6 +140,8 @@ namespace DrawAndGuess_client_csharp
                     + "}");
             }
         }
+
+
 
         /// <summary>  
         /// 画笔宽度设置  
@@ -495,6 +509,11 @@ namespace DrawAndGuess_client_csharp
                 Program.SendMessage("{\"method\": \"submit_answer\", \"answer\": \"" + textBox2.Text + "\"}");
                 textBox2.Text = "";
             }
+        }
+
+        private void DrawDlg_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.SendMessage("{\"method\": \"exit_room\"}");
         }
     }
 
