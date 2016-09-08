@@ -93,6 +93,12 @@ namespace DrawAndGuess_client_csharp
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Program.SendMessage("{\"method\": \"clear_pic\"}");
+            OnClearPic();
+        }
+
+        private void OnClearPic()
+        {
             g.Clear(Color.White);
             reDraw();
         }
@@ -117,6 +123,9 @@ namespace DrawAndGuess_client_csharp
             if (cd.ShowDialog() == DialogResult.OK)
             {
                 DrawColor = cd.Color;
+                Program.SendMessage("{\"method\": \"change_color\""
+                    + ", \"color\": " + DrawColor.ToArgb().ToString()
+                    + "}");
             }
         }
 
@@ -131,12 +140,14 @@ namespace DrawAndGuess_client_csharp
             if (e.Button == MouseButtons.Left)
             {
                 IsDraw = IsDrawer;
-                OnDrawDown(e.Location.X, e.Location.Y, dType == DrawType.Eraser);
+                int compatX = (int)(e.Location.X * 100 / dpiX);
+                int compatY = (int)(e.Location.Y * 100 / dpiY);
+                OnDrawDown(compatX, compatY, dType == DrawType.Eraser);
                 if (IsDraw)
                 {
                     Program.SendMessage("{\"method\": \"update_pic\""
-                        + ", \"x\": " + (e.Location.X * 100 / dpiX).ToString()
-                        + ", \"y\": " + (e.Location.Y * 100 / dpiY).ToString()
+                        + ", \"x\": " + compatX.ToString()
+                        + ", \"y\": " + compatY.ToString()
                         + ", \"new_line\": true"
                         + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
                         + "}");
@@ -167,10 +178,12 @@ namespace DrawAndGuess_client_csharp
         {
             if (IsDraw)
             {
-                OnDrawMove(e.Location.X, e.Location.Y, dType == DrawType.Eraser);
+                int compatX = (int)(e.Location.X * 100 / dpiX);
+                int compatY = (int)(e.Location.Y * 100 / dpiY);
+                OnDrawMove(compatX, compatY, dType == DrawType.Eraser);
                 Program.SendMessage("{\"method\": \"update_pic\""
-                    + ", \"x\": " + (e.Location.X * 100 / dpiX).ToString()
-                    + ", \"y\": " + (e.Location.Y * 100 / dpiY).ToString()
+                    + ", \"x\": " + compatX.ToString()
+                    + ", \"y\": " + compatY.ToString()
                     + ", \"new_line\": false"
                     + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
                     + "}");
@@ -282,12 +295,17 @@ namespace DrawAndGuess_client_csharp
                         ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
                         listView1.Items.Add(item);
                     }
-                    
+
                     LinePrintMessage("游戏开始，当前是第" + round + "轮");
                 }
                 else if (_event == "generate_word")
                 {
                     IsDrawer = true;
+                    button1.Enabled = true;
+                    button2.Enabled = true;
+                    button3.Enabled = true;
+                    button4.Enabled = true;
+
                     string word = (string)obj["word"];
                     foreach (ListViewItem item in listView1.Items)
                     {
@@ -307,6 +325,11 @@ namespace DrawAndGuess_client_csharp
                 else if (_event == "word_generated")
                 {
                     IsDrawer = false;
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                    button3.Enabled = false;
+                    button4.Enabled = false;
+
                     string drawerNick = (string)obj["nick"];
                     foreach (ListViewItem item in listView1.Items)
                     {
@@ -330,6 +353,10 @@ namespace DrawAndGuess_client_csharp
                     g.Clear(Color.White);
                     reDraw();
                     IsDrawer = false;
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                    button3.Enabled = false;
+                    button4.Enabled = false;
                 }
                 else if (_event == "answer_submitted")
                 {
@@ -359,6 +386,16 @@ namespace DrawAndGuess_client_csharp
                     {
                         OnDrawMove(x, y, eraser);
                     }
+                }
+                else if (_event == "color_changed")
+                {
+                    int argb = (int)obj["color"];
+                    Color color = Color.FromArgb(argb);
+                    DrawColor = color;
+                }
+                else if (_event == "pic_clear")
+                {
+                    OnClearPic();
                 }
             }
         }
@@ -451,8 +488,12 @@ namespace DrawAndGuess_client_csharp
 
         private void button5_Click(object sender, EventArgs e)
         {
-            LinePrintMessage(nick + ": " + textBox2.Text);
-            Program.SendMessage("{\"method\": \"submit_answer\", \"answer\": \"" + textBox2.Text + "\"}");
+            if (textBox2.Enabled && textBox2.Text != "")
+            {
+                LinePrintMessage(nick + ": " + textBox2.Text);
+                Program.SendMessage("{\"method\": \"submit_answer\", \"answer\": \"" + textBox2.Text + "\"}");
+                textBox2.Text = "";
+            }
         }
     }
 
