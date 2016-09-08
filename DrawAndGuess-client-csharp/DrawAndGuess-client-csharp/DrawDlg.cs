@@ -163,7 +163,7 @@ namespace DrawAndGuess_client_csharp
             originImg = (Bitmap)finishImg;
 
             //此句的作用是避免窗体最小化后还原窗体时，画布内容“丢失”  
-            //其实没有丢失，只是没刷新而已，读者可以在画布任意处作画，便可还原画布内容  
+            //其实没有丢失，只是没刷新而已，读者可以在画布任意处作画，便可还原画布内容
             picDraw.Image = originImg;
         }
 
@@ -194,6 +194,8 @@ namespace DrawAndGuess_client_csharp
                         ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
                         listView1.Items.Add(item);
                     }
+                    int round = (int)obj["round"];
+                    LinePrintMessage("游戏开始，当前是第" + round + "轮");
                 }
                 else if (_event == "generate_word")
                 {
@@ -244,14 +246,15 @@ namespace DrawAndGuess_client_csharp
 
         public void LinePrintMessage(string text)
         {
-            textBox1.Text += text + "\n";
+            textBox1.AppendText(text + "\r\n");
+            textBox1.ScrollToCaret();
         }
 
         public void LinePrintMessageSingle(string text)
         {
-            if (textBox1.Text.EndsWith("\n" + text + "\n") || textBox1.Text == text + "\n")
+            if (!textBox1.Text.EndsWith("\r\n" + text + "\r\n") && textBox1.Text != text + "\r\n")
             {
-                textBox1.Text += text + "\n";
+                LinePrintMessage(text);
             }
         }
 
@@ -305,14 +308,18 @@ namespace DrawAndGuess_client_csharp
 
         protected void UpdateTimer()
         {
-            if (seconds <= 0)
+            try
             {
-                BeginInvoke(new UIHandler(() => lblTimer.Text = ""));
+                if (seconds <= 0)
+                {
+                    BeginInvoke(new UIHandler(() => lblTimer.Text = ""));
+                }
+                else
+                {
+                    BeginInvoke(new UIHandler(() => lblTimer.Text = "剩余时间：" + seconds + "秒"));
+                }
             }
-            else
-            {
-                BeginInvoke(new UIHandler(() => lblTimer.Text = "剩余时间：" + seconds + "秒"));
-            }
+            catch { }
         }
     }
 

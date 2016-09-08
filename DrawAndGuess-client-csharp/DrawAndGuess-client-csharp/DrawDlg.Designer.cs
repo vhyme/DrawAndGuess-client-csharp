@@ -39,9 +39,9 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.clmDrawing = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmNick = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.clmDrawing = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTimer = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).BeginInit();
             this.SuspendLayout();
@@ -114,12 +114,15 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.textBox1.AcceptsReturn = true;
+            this.textBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textBox1.Location = new System.Drawing.Point(560, 337);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox1.MaxLength = 1048576;
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(334, 150);
             this.textBox1.TabIndex = 7;
@@ -158,6 +161,11 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // clmDrawing
+            // 
+            this.clmDrawing.Text = "Drawing";
+            this.clmDrawing.Width = 70;
+            // 
             // clmNick
             // 
             this.clmNick.Text = "Nick";
@@ -167,11 +175,6 @@
             // 
             this.clmScore.Text = "Score";
             this.clmScore.Width = 70;
-            // 
-            // clmDrawing
-            // 
-            this.clmDrawing.Text = "Drawing";
-            this.clmDrawing.Width = 70;
             // 
             // lblTimer
             // 
