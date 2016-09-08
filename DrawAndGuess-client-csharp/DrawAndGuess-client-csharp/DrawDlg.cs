@@ -26,6 +26,8 @@ namespace DrawAndGuess_client_csharp
         Pen p = new Pen(Color.Black, 1);
         bool IsDraw;
 
+        Dictionary<string, int> scores = new Dictionary<string,int>();
+
         private string nick;
 
         bool IsDrawer = false;
@@ -239,15 +241,28 @@ namespace DrawAndGuess_client_csharp
 
         private void AddScore(string nick, int score)
         {
+            if (scores[nick] == null)
+            {
+                scores.Add(nick, score);
+            }
+            else
+            {
+                scores[nick] += score;
+            }
+            UpdateScore();
+        }
+
+        private void UpdateScore()
+        {
             foreach (ListViewItem item in listView1.Items)
             {
-                if (item.SubItems[1].Text == nick)
+                if (scores[item.SubItems[1].Text] != null)
                 {
-                    string oldScoreStr = item.SubItems[2].Text;
-                    int oldScore = int.Parse(oldScoreStr);
-                    int newScore = oldScore + score;
-                    string newScoreStr = newScore.ToString();
-                    item.SubItems[2].Text = newScoreStr;
+                    item.SubItems[2].Text = scores[item.SubItems[1].Text].ToString();
+                }
+                else
+                {
+                    item.SubItems[2].Text = "0";
                 }
             }
         }
@@ -337,6 +352,7 @@ namespace DrawAndGuess_client_csharp
                             item.Text = "";
                         }
                     }
+                    UpdateScore();
 
                     LinePrintMessage("词语已生成：[" + word + "]，你现在是画图者，请开始画图。");
                     textBox2.Enabled = false;
@@ -362,6 +378,8 @@ namespace DrawAndGuess_client_csharp
                             item.Text = "";
                         }
                     }
+                    UpdateScore();
+
                     LinePrintMessage("词语已生成，请\"" + drawerNick + "\"画图。");
                     textBox2.Enabled = true;
                     StartTimer();
@@ -416,6 +434,12 @@ namespace DrawAndGuess_client_csharp
                 else if (_event == "pic_clear")
                 {
                     OnClearPic();
+                }
+                else if (_event == "game_end")
+                {
+                    LinePrintMessage("2轮游戏已全部结束");
+                    OnClearPic();
+                    btnStart.Visible = true;
                 }
             }
         }
