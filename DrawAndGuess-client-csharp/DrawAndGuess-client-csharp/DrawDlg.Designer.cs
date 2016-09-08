@@ -54,11 +54,7 @@
             this.picDraw.Location = new System.Drawing.Point(43, 50);
             this.picDraw.Margin = new System.Windows.Forms.Padding(2);
             this.picDraw.Name = "picDraw";
-<<<<<<< HEAD
             this.picDraw.Size = new System.Drawing.Size(428, 393);
-=======
-            this.picDraw.Size = new System.Drawing.Size(187, 315);
->>>>>>> origin/master
             this.picDraw.TabIndex = 0;
             this.picDraw.TabStop = false;
             this.picDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picDraw_MouseDown);
@@ -71,11 +67,7 @@
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-<<<<<<< HEAD
             this.button1.Location = new System.Drawing.Point(71, 402);
-=======
-            this.button1.Location = new System.Drawing.Point(50, 327);
->>>>>>> origin/master
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(32, 33);
@@ -89,11 +81,7 @@
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-<<<<<<< HEAD
             this.button2.Location = new System.Drawing.Point(426, 402);
-=======
-            this.button2.Location = new System.Drawing.Point(144, 327);
->>>>>>> origin/master
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(32, 33);
@@ -107,11 +95,7 @@
             this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-<<<<<<< HEAD
             this.button3.Location = new System.Drawing.Point(366, 402);
-=======
-            this.button3.Location = new System.Drawing.Point(191, 327);
->>>>>>> origin/master
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(32, 33);
@@ -125,11 +109,7 @@
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-<<<<<<< HEAD
             this.button4.Location = new System.Drawing.Point(130, 402);
-=======
-            this.button4.Location = new System.Drawing.Point(97, 327);
->>>>>>> origin/master
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(32, 33);
@@ -144,13 +124,8 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-<<<<<<< HEAD
             this.textBox1.Location = new System.Drawing.Point(549, 253);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-=======
-            this.textBox1.Location = new System.Drawing.Point(286, 202);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
->>>>>>> origin/master
             this.textBox1.MaxLength = 1048576;
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -164,11 +139,7 @@
             this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.ImeMode = System.Windows.Forms.ImeMode.On;
-<<<<<<< HEAD
             this.textBox2.Location = new System.Drawing.Point(549, 430);
-=======
-            this.textBox2.Location = new System.Drawing.Point(286, 344);
->>>>>>> origin/master
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(155, 26);
@@ -179,17 +150,10 @@
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-<<<<<<< HEAD
             this.button5.Location = new System.Drawing.Point(758, 430);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(35, 31);
-=======
-            this.button5.Location = new System.Drawing.Point(449, 343);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(20, 21);
->>>>>>> origin/master
             this.button5.TabIndex = 10;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -202,11 +166,7 @@
             this.clmDrawing,
             this.clmNick,
             this.clmScore});
-<<<<<<< HEAD
             this.listView1.Location = new System.Drawing.Point(523, 58);
-=======
-            this.listView1.Location = new System.Drawing.Point(286, 34);
->>>>>>> origin/master
             this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(183, 130);
@@ -216,7 +176,6 @@
             // 
             // clmDrawing
             // 
-<<<<<<< HEAD
             this.clmDrawing.Text = "状态";
             this.clmDrawing.Width = 70;
             // 
@@ -229,20 +188,6 @@
             // 
             this.clmScore.Text = "分数";
             this.clmScore.Width = 88;
-=======
-            this.clmDrawing.Text = "Drawing";
-            this.clmDrawing.Width = 83;
-            // 
-            // clmNick
-            // 
-            this.clmNick.Text = "Nick";
-            this.clmNick.Width = 83;
-            // 
-            // clmScore
-            // 
-            this.clmScore.Text = "Score";
-            this.clmScore.Width = 78;
->>>>>>> origin/master
             // 
             // lblTimer
             // 
@@ -275,12 +220,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-<<<<<<< HEAD
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(838, 497);
-=======
-            this.ClientSize = new System.Drawing.Size(790, 505);
->>>>>>> origin/master
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.listView1);
