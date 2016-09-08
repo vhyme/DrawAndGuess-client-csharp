@@ -243,11 +243,11 @@ namespace DrawAndGuess_client_csharp
         {
             if (scores.ContainsKey(nick))
             {
-                scores.Add(nick, score);
+                scores[nick] += score; 
             }
             else
             {
-                scores[nick] += score;
+                scores.Add(nick, score);
             }
             UpdateScore();
         }
