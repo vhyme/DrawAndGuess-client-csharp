@@ -241,7 +241,7 @@ namespace DrawAndGuess_client_csharp
 
         private void AddScore(string nick, int score)
         {
-            if (scores[nick] == null)
+            if (scores.ContainsKey(nick))
             {
                 scores.Add(nick, score);
             }
@@ -256,7 +256,7 @@ namespace DrawAndGuess_client_csharp
         {
             foreach (ListViewItem item in listView1.Items)
             {
-                if (scores[item.SubItems[1].Text] != null)
+                if (scores.ContainsKey(item.SubItems[1].Text))
                 {
                     item.SubItems[2].Text = scores[item.SubItems[1].Text].ToString();
                 }
@@ -437,8 +437,20 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "game_end")
                 {
-                    LinePrintMessage("2轮游戏已全部结束");
+                    int maxScore = 0;
+                    string best_nick = "";
+                    foreach (KeyValuePair<string, int> pair in scores)
+                    {
+                        if (pair.Value > maxScore)
+                        {
+                            maxScore = pair.Value;
+                            best_nick = pair.Key;
+                        }
+                    }
+                    string hint = maxScore == 0 ? "没有人得分。" : (best_nick + "获得了最高分" + maxScore.ToString() + "分。");
+                    LinePrintMessage("2轮游戏已全部结束，" + hint);
                     OnClearPic();
+                    scores.Clear();
                     btnStart.Visible = true;
                 }
             }
