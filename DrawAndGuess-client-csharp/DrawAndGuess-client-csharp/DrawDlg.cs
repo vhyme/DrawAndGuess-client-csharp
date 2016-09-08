@@ -386,7 +386,7 @@ namespace DrawAndGuess_client_csharp
                 timer.Stop();
             }
 
-            seconds = 10;
+            seconds = 60;
             UpdateTimer();
             timer = new System.Timers.Timer();  
             timer.Enabled = true;  
