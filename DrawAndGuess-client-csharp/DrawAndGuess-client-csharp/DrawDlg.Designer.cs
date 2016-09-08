@@ -43,6 +43,7 @@
             this.clmNick = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmScore = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblTimer = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,6 +151,7 @@
             this.button5.Size = new System.Drawing.Size(46, 27);
             this.button5.TabIndex = 10;
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // listView1
             // 
@@ -190,11 +192,22 @@
             this.lblTimer.Text = "剩余时间";
             this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(75, 31);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 30);
+            this.btnStart.TabIndex = 13;
+            this.btnStart.Text = "开始游戏";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
+            // 
             // DrawDlg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(978, 600);
+            this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button5);
@@ -229,5 +242,6 @@
         private System.Windows.Forms.ColumnHeader clmScore;
         private System.Windows.Forms.ColumnHeader clmDrawing;
         private System.Windows.Forms.Label lblTimer;
+        private System.Windows.Forms.Button btnStart;
     }
 }

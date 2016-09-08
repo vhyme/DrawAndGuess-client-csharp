@@ -23,8 +23,11 @@ namespace DrawAndGuess_client_csharp
         bool IsDraw;
         Rectangle FontRect;
 
-        string nick;
-        bool isDrawer = false;
+        private int room;
+
+        private string nick;
+
+        bool IsDrawer = false;
 
         /// <summary>  
         /// 画笔颜色  
@@ -42,15 +45,23 @@ namespace DrawAndGuess_client_csharp
             set { p.Width = value; }
         }
 
-        public DrawDlg(int room, string nick)
+        public DrawDlg(int room, string nick, string[] nicks, bool isMaster)
         {
             InitializeComponent();
             Program.RegisterMessageHandler(this, this);
 
+            btnStart.Enabled = isMaster;
+            btnStart.Text = isMaster ? "开始游戏" : "等待开始";
+
             this.Text = "你画我猜 - " + room.ToString() + "号房间";
             this.nick = nick;
 
-            Program.SendMessage("{\"method\": \"start_game\"}");
+            listView1.Items.Clear();
+            foreach (string member in nicks)
+            {
+                ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
+                listView1.Items.Add(item);
+            }
 
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.UpdateStyles();
@@ -117,44 +128,69 @@ namespace DrawAndGuess_client_csharp
         {
             if (e.Button == MouseButtons.Left)
             {
-                IsDraw = isDrawer;
-                StartPoint = e.Location;
-                finishImg = (Image)originImg.Clone();
+                IsDraw = IsDrawer;
+                OnDrawDown(e.Location.X, e.Location.Y, dType == DrawType.Eraser);
+                if (IsDraw)
+                {
+                    Program.SendMessage("{\"method\": \"update_pic\""
+                        + ", \"x\": " + e.Location.X.ToString()
+                        + ", \"y\": " + e.Location.Y.ToString()
+                        + ", \"new_line\": true"
+                        + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
+                        + "}");
+                    LinePrintMessageSingle("你正在画图。");
+                }
             }
-            if (!isDrawer)
+
+            if (!IsDrawer)
             {
                 LinePrintMessageSingle("你不是画图者或游戏暂未开始，无法画图");
             }
+        }
+
+        private void OnDrawDown(int x, int y, bool eraser)
+        {
+            dType = eraser ? DrawType.Eraser : DrawType.Pen;
+            StartPoint = new Point(x, y);
+            finishImg = (Image)originImg.Clone();
         }
 
         private void picDraw_MouseMove(object sender, MouseEventArgs e)
         {
             if (IsDraw)
             {
-                EndPoint = e.Location;
-                if (dType != DrawType.Pen && dType != DrawType.Eraser)
-                {
-                    finishImg = (Image)originImg.Clone();
-                }
-                g = Graphics.FromImage(finishImg);
-                g.SmoothingMode = SmoothingMode.AntiAlias; //抗锯齿  
-                switch (dType)
-                {
-                    case DrawType.Pen:
-                        g.DrawLine(p, StartPoint, EndPoint);
-                        StartPoint = EndPoint;
-                        break;
-                    case DrawType.Eraser:
-                        Pen pen1 = new Pen(Color.White, 20);
-                        pen1.StartCap = LineCap.Round;
-                        pen1.StartCap = LineCap.Round;
-                        g.DrawLine(pen1, StartPoint, EndPoint);
-                        StartPoint = EndPoint;
-                        pen1.Dispose();
-                        break;
-                }
-                reDraw();
+                OnDrawMove(e.Location.X, e.Location.Y, dType == DrawType.Eraser);
+                Program.SendMessage("{\"method\": \"update_pic\""
+                    + ", \"x\": " + e.Location.X.ToString()
+                    + ", \"y\": " + e.Location.Y.ToString()
+                    + ", \"new_line\": false"
+                    + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
+                    + "}");
             }
+        }
+
+        private void OnDrawMove(int x, int y, bool eraser)
+        {
+            dType = eraser ? DrawType.Eraser : DrawType.Pen;
+            EndPoint = new Point(x, y);
+            g = Graphics.FromImage(finishImg);
+            g.SmoothingMode = SmoothingMode.AntiAlias; //抗锯齿  
+            switch (dType)
+            {
+                case DrawType.Pen:
+                    g.DrawLine(p, StartPoint, EndPoint);
+                    StartPoint = EndPoint;
+                    break;
+                case DrawType.Eraser:
+                    Pen pen1 = new Pen(Color.White, 20);
+                    pen1.StartCap = LineCap.Round;
+                    pen1.StartCap = LineCap.Round;
+                    g.DrawLine(pen1, StartPoint, EndPoint);
+                    StartPoint = EndPoint;
+                    pen1.Dispose();
+                    break;
+            }
+            reDraw();
         }
 
         private void picDraw_MouseUp(object sender, MouseEventArgs e)
@@ -167,25 +203,68 @@ namespace DrawAndGuess_client_csharp
             picDraw.Image = originImg;
         }
 
+        private void AddScore(string nick, int score)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if (item.SubItems[1].ToString() == nick)
+                {
+                    string oldScoreStr = item.SubItems[2].Text;
+                    int oldScore = int.Parse(oldScoreStr);
+                    int newScore = oldScore + score;
+                    string newScoreStr = newScore.ToString();
+                    item.SubItems[2].Text = newScoreStr;
+                }
+            }
+        }
+
         public void HandleMessage(string message)
         {
             JObject obj = JObject.Parse(message);
             if (obj["method"] != null && (string)obj["method"] != "")
             {
                 string method = (string)obj["method"];
-                if (method == "start_game" && !(bool)obj["success"])
+                if (method == "start_game" && (bool)obj["success"])
                 {
-                    // 创建房间失败，此时不需要弹出窗口，因为Program中已经弹出了错误信息
-                    // 此处只要负责退出即可
-                    Close();
-                    Dispose();
+                    btnStart.Visible = false;
+                }
+                if (method == "submit_answer" && (bool)obj["success"])
+                {
+                    if ((bool)obj["win"])
+                    {
+                        LinePrintMessage("\"" + nick + "\"猜对了正确答案，加10分");
+                        AddScore(nick, 10);
+                    }
                 }
             }
             else if (obj["event"] != null && (string)obj["event"] != "")
             {
                 string _event = (string) obj["event"];
 
-                if (_event == "game_start")
+                if (_event == "user_join")// 用户加入
+                {
+                    string nick = (string)obj["nick"];
+                    ListViewItem item = new ListViewItem(new string[] { "", nick, "0" });
+                    listView1.Items.Add(item);
+                }
+                else if (_event == "user_exit")// 用户退出
+                {
+                    string nick = (string)obj["nick"];
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        if (item.SubItems[1].Text == nick)
+                        {
+                            listView1.Items.Remove(item);
+                        }
+                    }
+                }
+                else if (_event == "room_expire")// 房间解散
+                {
+                    MessageBox.Show("Room manager has disconnected. Game will now end.");
+                    Close();
+                    Dispose();
+                }
+                else if (_event == "game_start")
                 {
                     listView1.Items.Clear();
                     string[] members = (from str in obj["players"] select (string)str).ToArray();
@@ -199,7 +278,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "generate_word")
                 {
-                    isDrawer = true;
+                    IsDrawer = true;
                     string word = (string)obj["word"];
                     foreach (ListViewItem item in listView1.Items)
                     {
@@ -217,7 +296,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "word_generated")
                 {
-                    isDrawer = false;
+                    IsDrawer = false;
                     string drawerNick = (string)obj["nick"];
                     foreach (ListViewItem item in listView1.Items)
                     {
@@ -239,7 +318,36 @@ namespace DrawAndGuess_client_csharp
 
                     g.Clear(Color.White);
                     reDraw();
-                    isDrawer = false;
+                    IsDrawer = false;
+                }
+                else if (_event == "answer_submitted")
+                {
+                    string nick = (string)obj["nick"];
+                    if ((bool)obj["win"])
+                    {
+                        LinePrintMessage("\"" + nick + "\"猜对了正确答案，加10分");
+                        AddScore(nick, 10);
+                    }
+                    else
+                    {
+                        LinePrintMessage(nick + ": " + (string)obj["answer"]);
+                    }
+                }
+                else if (_event == "pic_updated")
+                {
+                    int x = (int)obj["x"];
+                    int y = (int)obj["y"];
+                    bool new_line = (bool)obj["new_line"];
+                    bool eraser = (bool)obj["eraser"];
+                    if (new_line)
+                    {
+                        OnDrawDown(x, y, eraser);
+                        LinePrintMessageSingle("画图者正在画图。");
+                    }
+                    else
+                    {
+                        OnDrawMove(x, y, eraser);
+                    }
                 }
             }
         }
@@ -320,6 +428,17 @@ namespace DrawAndGuess_client_csharp
                 }
             }
             catch { }
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            Program.SendMessage("{\"method\": \"start_game\"}");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            LinePrintMessage(nick + ": " + textBox2.Text);
+            Program.SendMessage("{\"method\": \"submit_answer\", \"answer\": \"" + textBox2.Text + "\"}");
         }
     }
 

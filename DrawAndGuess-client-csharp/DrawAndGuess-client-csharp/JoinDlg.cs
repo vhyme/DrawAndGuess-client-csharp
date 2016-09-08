@@ -63,7 +63,7 @@ namespace DrawAndGuess_client_csharp
                     {
                         string[] nicks = (from str in obj["players"] select (string) str).ToArray();
 
-                        WaitDlg dlg = new WaitDlg(room, nick, nicks, false);
+                        DrawDlg dlg = new DrawDlg(room, nick, nicks, false);
                         dlg.ShowDialog();
                     }
                 }
