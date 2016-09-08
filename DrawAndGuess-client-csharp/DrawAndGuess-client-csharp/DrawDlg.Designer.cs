@@ -49,12 +49,11 @@
             // 
             // picDraw
             // 
-            this.picDraw.BackColor = System.Drawing.Color.White;
+            this.picDraw.BackColor = System.Drawing.Color.WhiteSmoke;
             this.picDraw.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picDraw.Location = new System.Drawing.Point(75, 70);
-            this.picDraw.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.picDraw.Location = new System.Drawing.Point(50, 59);
             this.picDraw.Name = "picDraw";
-            this.picDraw.Size = new System.Drawing.Size(402, 377);
+            this.picDraw.Size = new System.Drawing.Size(269, 387);
             this.picDraw.TabIndex = 0;
             this.picDraw.TabStop = false;
             this.picDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picDraw_MouseDown);
@@ -67,10 +66,9 @@
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(75, 467);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Location = new System.Drawing.Point(51, 403);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(62, 67);
+            this.button1.Size = new System.Drawing.Size(41, 42);
             this.button1.TabIndex = 1;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -81,24 +79,23 @@
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(303, 467);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Location = new System.Drawing.Point(202, 403);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(62, 67);
+            this.button2.Size = new System.Drawing.Size(41, 42);
             this.button2.TabIndex = 3;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(417, 467);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button3.Location = new System.Drawing.Point(275, 403);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(62, 67);
+            this.button3.Size = new System.Drawing.Size(41, 42);
             this.button3.TabIndex = 4;
-            this.button3.Text = "Clear";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -108,10 +105,9 @@
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button4.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(189, 467);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button4.Location = new System.Drawing.Point(126, 403);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(62, 67);
+            this.button4.Size = new System.Drawing.Size(41, 42);
             this.button4.TabIndex = 6;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -119,49 +115,54 @@
             // textBox1
             // 
             this.textBox1.AcceptsReturn = true;
+            this.textBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBox1.Location = new System.Drawing.Point(560, 344);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.textBox1.Location = new System.Drawing.Point(385, 232);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.MaxLength = 1048576;
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(334, 150);
+            this.textBox1.Size = new System.Drawing.Size(294, 148);
             this.textBox1.TabIndex = 7;
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox2.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.textBox2.Location = new System.Drawing.Point(560, 507);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBox2.Location = new System.Drawing.Point(385, 420);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(288, 27);
+            this.textBox2.Size = new System.Drawing.Size(261, 26);
             this.textBox2.TabIndex = 9;
             // 
             // button5
             // 
             this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button5.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.button5.Location = new System.Drawing.Point(848, 507);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button5.Location = new System.Drawing.Point(652, 420);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(46, 27);
+            this.button5.Size = new System.Drawing.Size(27, 26);
             this.button5.TabIndex = 10;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // listView1
             // 
+            this.listView1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.clmDrawing,
             this.clmNick,
             this.clmScore});
-            this.listView1.Location = new System.Drawing.Point(560, 70);
+            this.listView1.Location = new System.Drawing.Point(385, 42);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(334, 248);
+            this.listView1.Size = new System.Drawing.Size(294, 166);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -174,29 +175,32 @@
             // clmNick
             // 
             this.clmNick.Text = "Nick";
-            this.clmNick.Width = 158;
+            this.clmNick.Width = 102;
             // 
             // clmScore
             // 
             this.clmScore.Text = "Score";
-            this.clmScore.Width = 70;
+            this.clmScore.Width = 88;
             // 
             // lblTimer
             // 
             this.lblTimer.AutoSize = true;
-            this.lblTimer.Location = new System.Drawing.Point(410, 37);
-            this.lblTimer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTimer.BackColor = System.Drawing.Color.Transparent;
+            this.lblTimer.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblTimer.Location = new System.Drawing.Point(189, 30);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(67, 19);
+            this.lblTimer.Size = new System.Drawing.Size(65, 20);
             this.lblTimer.TabIndex = 12;
             this.lblTimer.Text = "剩余时间";
             this.lblTimer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(75, 31);
+            this.btnStart.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnStart.Location = new System.Drawing.Point(50, 26);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 30);
+            this.btnStart.Size = new System.Drawing.Size(89, 28);
             this.btnStart.TabIndex = 13;
             this.btnStart.Text = "开始游戏";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -204,9 +208,12 @@
             // 
             // DrawDlg
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(978, 600);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(737, 495);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.listView1);
@@ -218,9 +225,10 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.picDraw);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Name = "DrawDlg";
-            this.Text = "Draw";
+            this.Text = "你画我猜-游戏房间";
             ((System.ComponentModel.ISupportInitialize)(this.picDraw)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
