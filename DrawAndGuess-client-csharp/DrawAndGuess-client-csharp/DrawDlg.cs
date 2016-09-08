@@ -14,9 +14,9 @@ namespace DrawAndGuess_client_csharp
 {
     public partial class DrawDlg : Form, MessageHandler
     {
-        static Graphics graphics = Graphics.FromHwnd(IntPtr.Zero);
-        float dpiX = graphics.DpiX;
-        float dpiY = graphics.DpiY;
+        //static Graphics graphics = Graphics.FromHwnd(IntPtr.Zero);
+        //float dpiX = graphics.DpiX;
+        //float dpiY = graphics.DpiY;
 
         Bitmap originImg;
         Image finishImg;
@@ -48,7 +48,7 @@ namespace DrawAndGuess_client_csharp
 
         public DrawDlg(int room, string nick, string[] nicks, bool isMaster)
         {
-            Console.WriteLine(dpiX);
+            //Console.WriteLine(dpiX);
             InitializeComponent();
             Program.RegisterMessageHandler(this, this);
 
@@ -80,6 +80,18 @@ namespace DrawAndGuess_client_csharp
             picDraw.Image = originImg;
             finishImg = (Image)originImg.Clone();
         }
+
+        /*protected override CreateParams CreateParams
+        {
+            get
+            {
+                int CS_NOCLOSE = 0x200;
+                CreateParams parameters = base.CreateParams;
+                parameters.ClassStyle |= CS_NOCLOSE;
+
+                return parameters;
+            }
+        }*/
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -129,6 +141,8 @@ namespace DrawAndGuess_client_csharp
             }
         }
 
+
+
         /// <summary>  
         /// 画笔宽度设置  
         /// </summary>  
@@ -140,8 +154,8 @@ namespace DrawAndGuess_client_csharp
             if (e.Button == MouseButtons.Left)
             {
                 IsDraw = IsDrawer;
-                int compatX = (int)(e.Location.X * 100 / dpiX);
-                int compatY = (int)(e.Location.Y * 100 / dpiY);
+                int compatX = /*(int)(*/e.Location.X/* * 100 / dpiX)*/;
+                int compatY = /*(int)(*/e.Location.Y/* * 100 / dpiY)*/;
                 OnDrawDown(compatX, compatY, dType == DrawType.Eraser);
                 if (IsDraw)
                 {
@@ -151,7 +165,7 @@ namespace DrawAndGuess_client_csharp
                         + ", \"new_line\": true"
                         + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
                         + "}");
-                    LinePrintMessageSingle("你正在画图。");
+                    //LinePrintMessageSingle("你正在画图。");
                 }
             }
 
@@ -170,7 +184,7 @@ namespace DrawAndGuess_client_csharp
             picDraw.Image = originImg;
 
             dType = eraser ? DrawType.Eraser : DrawType.Pen;
-            StartPoint = new Point((int)(x * dpiX / 100), (int)(y * dpiY / 100));
+            StartPoint = new Point(x, y);//(int)(x * dpiX / 100), (int)(y * dpiY / 100));
             finishImg = (Image)originImg.Clone();
         }
 
@@ -178,8 +192,8 @@ namespace DrawAndGuess_client_csharp
         {
             if (IsDraw)
             {
-                int compatX = (int)(e.Location.X * 100 / dpiX);
-                int compatY = (int)(e.Location.Y * 100 / dpiY);
+                int compatX = /*(int)(*/e.Location.X/* * 100 / dpiX)*/;
+                int compatY = /*(int)(*/e.Location.Y/* * 100 / dpiY)*/;
                 OnDrawMove(compatX, compatY, dType == DrawType.Eraser);
                 Program.SendMessage("{\"method\": \"update_pic\""
                     + ", \"x\": " + compatX.ToString()
@@ -193,7 +207,7 @@ namespace DrawAndGuess_client_csharp
         private void OnDrawMove(int x, int y, bool eraser)
         {
             dType = eraser ? DrawType.Eraser : DrawType.Pen;
-            EndPoint = new Point((int)(x * dpiX / 100), (int)(y * dpiY / 100));
+            EndPoint = new Point(x, y);//(int)(x * dpiX / 100), (int)(y * dpiY / 100));
             g = Graphics.FromImage(finishImg);
             g.SmoothingMode = SmoothingMode.AntiAlias; //抗锯齿  
             switch (dType)
@@ -287,15 +301,16 @@ namespace DrawAndGuess_client_csharp
                     if (round == 1)
                     {
                         listView1.Items.Clear();
+
+                        string[] members = (from str in obj["players"] select (string)str).ToArray();
+                        foreach (string member in members)
+                        {
+                            ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
+                            listView1.Items.Add(item);
+                        }
                     }
 
-                    string[] members = (from str in obj["players"] select (string)str).ToArray();
-                    foreach (string member in members)
-                    {
-                        ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
-                        listView1.Items.Add(item);
-                    }
-
+                    OnClearPic();
                     LinePrintMessage("游戏开始，当前是第" + round + "轮");
                 }
                 else if (_event == "generate_word")
@@ -380,7 +395,7 @@ namespace DrawAndGuess_client_csharp
                     if (new_line)
                     {
                         OnDrawDown(x, y, eraser);
-                        LinePrintMessageSingle("画图者正在画图。");
+                        //LinePrintMessageSingle("画图者正在画图。");
                     }
                     else
                     {
@@ -494,6 +509,11 @@ namespace DrawAndGuess_client_csharp
                 Program.SendMessage("{\"method\": \"submit_answer\", \"answer\": \"" + textBox2.Text + "\"}");
                 textBox2.Text = "";
             }
+        }
+
+        private void DrawDlg_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.SendMessage("{\"method\": \"exit_room\"}");
         }
     }
 

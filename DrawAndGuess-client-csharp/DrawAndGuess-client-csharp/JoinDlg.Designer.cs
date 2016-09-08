@@ -45,7 +45,7 @@
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(175, 44);
             this.btnSubmit.TabIndex = 5;
-            this.btnSubmit.Text = "Join Room";
+            this.btnSubmit.Text = "加入房间";
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
@@ -54,11 +54,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(52, 213);
+            this.label1.Location = new System.Drawing.Point(53, 223);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 15);
+            this.label1.Size = new System.Drawing.Size(52, 15);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Room ID";
+            this.label1.Text = "房间号";
             // 
             // tbxRoomId
             // 
@@ -73,11 +73,11 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(261, 213);
+            this.label2.Location = new System.Drawing.Point(262, 223);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 15);
+            this.label2.Size = new System.Drawing.Size(67, 15);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Your Nickname";
+            this.label2.Text = "设置昵称";
             // 
             // tbxNick
             // 
