@@ -85,7 +85,7 @@
             this.tbxNick.Location = new System.Drawing.Point(265, 251);
             this.tbxNick.Name = "tbxNick";
             this.tbxNick.Size = new System.Drawing.Size(174, 27);
-            this.tbxNick.TabIndex = 6;
+            this.tbxNick.TabIndex = 4;
             // 
             // JoinDlg
             // 
