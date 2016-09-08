@@ -241,7 +241,7 @@ namespace DrawAndGuess_client_csharp
         {
             foreach (ListViewItem item in listView1.Items)
             {
-                if (item.SubItems[1].ToString() == nick)
+                if (item.SubItems[1].Text == nick)
                 {
                     string oldScoreStr = item.SubItems[2].Text;
                     int oldScore = int.Parse(oldScoreStr);
@@ -326,17 +326,19 @@ namespace DrawAndGuess_client_csharp
                     button4.Enabled = true;
 
                     string word = (string)obj["word"];
+
                     foreach (ListViewItem item in listView1.Items)
                     {
-                        if (item.SubItems[1].ToString() == nick)
+                        if (item.SubItems[1].Text == nick)
                         {
-                            item.SubItems[0].Text = "*";
+                            item.Text = "*";
                         }
                         else
                         {
-                            item.SubItems[0].Text = "";
+                            item.Text = "";
                         }
                     }
+
                     LinePrintMessage("词语已生成：[" + word + "]，你现在是画图者，请开始画图。");
                     textBox2.Enabled = false;
                     StartTimer();
@@ -352,13 +354,13 @@ namespace DrawAndGuess_client_csharp
                     string drawerNick = (string)obj["nick"];
                     foreach (ListViewItem item in listView1.Items)
                     {
-                        if (item.SubItems[1].ToString() == drawerNick)
+                        if (item.SubItems[1].Text == drawerNick)
                         {
-                            item.SubItems[0].Text = "*";
+                            item.Name = "*";
                         }
                         else
                         {
-                            item.SubItems[0].Text = "";
+                            item.Name = "";
                         }
                     }
                     LinePrintMessage("词语已生成，请\"" + drawerNick + "\"画图。");
