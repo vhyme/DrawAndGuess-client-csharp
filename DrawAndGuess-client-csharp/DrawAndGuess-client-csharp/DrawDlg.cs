@@ -556,6 +556,19 @@ namespace DrawAndGuess_client_csharp
         {
             Program.SendMessage("{\"method\": \"exit_room\"}");
         }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (textBox2.Enabled && textBox2.Text != "")
+                {
+                    LinePrintMessage(nick + ": " + textBox2.Text);
+                    Program.SendMessage("{\"method\": \"submit_answer\", \"answer\": \"" + textBox2.Text + "\"}");
+                    textBox2.Text = "";
+                }
+            }
+        }
     }
 
     enum DrawType
