@@ -47,11 +47,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(78, 214);
+            this.label1.Location = new System.Drawing.Point(79, 225);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 15);
+            this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Your Nickname";
+            this.label1.Text = "设置昵称";
             // 
             // btnSubmit
             // 
@@ -63,7 +63,7 @@
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(172, 44);
             this.btnSubmit.TabIndex = 2;
-            this.btnSubmit.Text = "Create Room";
+            this.btnSubmit.Text = "创建房间";
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.onSubmit);
             // 

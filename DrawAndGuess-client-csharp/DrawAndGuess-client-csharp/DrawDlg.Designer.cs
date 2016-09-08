@@ -196,7 +196,7 @@
             // 
             this.btnStart.Location = new System.Drawing.Point(75, 31);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 30);
+            this.btnStart.Size = new System.Drawing.Size(83, 30);
             this.btnStart.TabIndex = 13;
             this.btnStart.Text = "开始游戏";
             this.btnStart.UseVisualStyleBackColor = true;

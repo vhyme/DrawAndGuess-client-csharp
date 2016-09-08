@@ -30,7 +30,7 @@ namespace DrawAndGuess_client_csharp
         [STAThread]
         public static void Main()
         {
-            SetProcessDPIAware();
+            //SetProcessDPIAware();
             try
             {
                 client = new SimpleTcpClient().Connect("139.129.4.219", 8082);
