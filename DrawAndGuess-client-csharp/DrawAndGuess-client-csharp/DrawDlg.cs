@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using Newtonsoft.Json.Linq;
-
+using System.Runtime.InteropServices;
 namespace DrawAndGuess_client_csharp
 {
     public partial class DrawDlg : Form, MessageHandler
     {
+        static Graphics graphics = Graphics.FromHwnd(IntPtr.Zero);
+        float dpiX = graphics.DpiX;
+        float dpiY = graphics.DpiY;
+
         Bitmap originImg;
         Image finishImg;
         Graphics g;
@@ -21,9 +25,6 @@ namespace DrawAndGuess_client_csharp
         Point StartPoint, EndPoint;
         Pen p = new Pen(Color.Black, 1);
         bool IsDraw;
-        Rectangle FontRect;
-
-        private int room;
 
         private string nick;
 
@@ -47,6 +48,7 @@ namespace DrawAndGuess_client_csharp
 
         public DrawDlg(int room, string nick, string[] nicks, bool isMaster)
         {
+            Console.WriteLine(dpiX);
             InitializeComponent();
             Program.RegisterMessageHandler(this, this);
 
@@ -133,8 +135,8 @@ namespace DrawAndGuess_client_csharp
                 if (IsDraw)
                 {
                     Program.SendMessage("{\"method\": \"update_pic\""
-                        + ", \"x\": " + e.Location.X.ToString()
-                        + ", \"y\": " + e.Location.Y.ToString()
+                        + ", \"x\": " + (e.Location.X * 100 / dpiX).ToString()
+                        + ", \"y\": " + (e.Location.Y * 100 / dpiY).ToString()
                         + ", \"new_line\": true"
                         + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
                         + "}");
@@ -150,8 +152,14 @@ namespace DrawAndGuess_client_csharp
 
         private void OnDrawDown(int x, int y, bool eraser)
         {
+            originImg = (Bitmap)finishImg;
+
+            //此句的作用是避免窗体最小化后还原窗体时，画布内容“丢失”  
+            //其实没有丢失，只是没刷新而已，读者可以在画布任意处作画，便可还原画布内容
+            picDraw.Image = originImg;
+
             dType = eraser ? DrawType.Eraser : DrawType.Pen;
-            StartPoint = new Point(x, y);
+            StartPoint = new Point((int)(x * dpiX / 100), (int)(y * dpiY / 100));
             finishImg = (Image)originImg.Clone();
         }
 
@@ -161,8 +169,8 @@ namespace DrawAndGuess_client_csharp
             {
                 OnDrawMove(e.Location.X, e.Location.Y, dType == DrawType.Eraser);
                 Program.SendMessage("{\"method\": \"update_pic\""
-                    + ", \"x\": " + e.Location.X.ToString()
-                    + ", \"y\": " + e.Location.Y.ToString()
+                    + ", \"x\": " + (e.Location.X * 100 / dpiX).ToString()
+                    + ", \"y\": " + (e.Location.Y * 100 / dpiY).ToString()
                     + ", \"new_line\": false"
                     + ", \"eraser\": " + ((dType == DrawType.Eraser) ? "true" : "false")
                     + "}");
@@ -172,7 +180,7 @@ namespace DrawAndGuess_client_csharp
         private void OnDrawMove(int x, int y, bool eraser)
         {
             dType = eraser ? DrawType.Eraser : DrawType.Pen;
-            EndPoint = new Point(x, y);
+            EndPoint = new Point((int)(x * dpiX / 100), (int)(y * dpiY / 100));
             g = Graphics.FromImage(finishImg);
             g.SmoothingMode = SmoothingMode.AntiAlias; //抗锯齿  
             switch (dType)
@@ -196,11 +204,6 @@ namespace DrawAndGuess_client_csharp
         private void picDraw_MouseUp(object sender, MouseEventArgs e)
         {
             IsDraw = false;
-            originImg = (Bitmap)finishImg;
-
-            //此句的作用是避免窗体最小化后还原窗体时，画布内容“丢失”  
-            //其实没有丢失，只是没刷新而已，读者可以在画布任意处作画，便可还原画布内容
-            picDraw.Image = originImg;
         }
 
         private void AddScore(string nick, int score)
@@ -232,6 +235,7 @@ namespace DrawAndGuess_client_csharp
                 {
                     if ((bool)obj["win"])
                     {
+                        LinePrintMessage("正确答案消息已隐藏，仅自己可见。");
                         LinePrintMessage("\"" + nick + "\"猜对了正确答案，加10分");
                         AddScore(nick, 10);
                     }
@@ -239,7 +243,7 @@ namespace DrawAndGuess_client_csharp
             }
             else if (obj["event"] != null && (string)obj["event"] != "")
             {
-                string _event = (string) obj["event"];
+                string _event = (string)obj["event"];
 
                 if (_event == "user_join")// 用户加入
                 {
@@ -260,20 +264,25 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "room_expire")// 房间解散
                 {
-                    MessageBox.Show("Room manager has disconnected. Game will now end.");
+                    MessageBox.Show("有人退出了房间，游戏结束。");
                     Close();
                     Dispose();
                 }
                 else if (_event == "game_start")
                 {
-                    listView1.Items.Clear();
+                    int round = (int)obj["round"];
+                    if (round == 1)
+                    {
+                        listView1.Items.Clear();
+                    }
+
                     string[] members = (from str in obj["players"] select (string)str).ToArray();
                     foreach (string member in members)
                     {
                         ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
                         listView1.Items.Add(item);
                     }
-                    int round = (int)obj["round"];
+                    
                     LinePrintMessage("游戏开始，当前是第" + round + "轮");
                 }
                 else if (_event == "generate_word")
@@ -292,6 +301,7 @@ namespace DrawAndGuess_client_csharp
                         }
                     }
                     LinePrintMessage("词语已生成：[" + word + "]，你现在是画图者，请开始画图。");
+                    textBox2.Enabled = false;
                     StartTimer();
                 }
                 else if (_event == "word_generated")
@@ -310,12 +320,13 @@ namespace DrawAndGuess_client_csharp
                         }
                     }
                     LinePrintMessage("词语已生成，请\"" + drawerNick + "\"画图。");
+                    textBox2.Enabled = true;
                     StartTimer();
                 }
                 else if (_event == "time_up")
                 {
                     LinePrintMessage("本局游戏结束");
-
+                    textBox2.Enabled = true;
                     g.Clear(Color.White);
                     reDraw();
                     IsDrawer = false;
@@ -366,7 +377,7 @@ namespace DrawAndGuess_client_csharp
             }
         }
 
-        ~DrawDlg() 
+        ~DrawDlg()
         {
             Program.UnregisterMessageHandler(this);
         }
@@ -381,18 +392,18 @@ namespace DrawAndGuess_client_csharp
 
         protected void StartTimer()
         {
-            if (timer != null) 
+            if (timer != null)
             {
                 timer.Stop();
             }
 
             seconds = 60;
             UpdateTimer();
-            timer = new System.Timers.Timer();  
-            timer.Enabled = true;  
+            timer = new System.Timers.Timer();
+            timer.Enabled = true;
             timer.Interval = 1000;//执行间隔时间,单位为毫秒  
-            timer.Start();  
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer1_Elapsed);  
+            timer.Start();
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer1_Elapsed);
         }
 
         protected void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -409,7 +420,10 @@ namespace DrawAndGuess_client_csharp
 
         protected void OnTimeUp()
         {
-            Program.SendMessage("{\"method\": \"time_up\"}");
+            if (IsDrawer)
+            {
+                Program.SendMessage("{\"method\": \"time_up\"}");
+            }
         }
 
         public delegate void UIHandler();
