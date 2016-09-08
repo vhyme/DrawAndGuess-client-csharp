@@ -154,11 +154,11 @@ namespace DrawAndGuess_client_csharp
             if (e.Button == MouseButtons.Left)
             {
                 IsDraw = IsDrawer;
-                int compatX = /*(int)(*/e.Location.X/* * 100 / dpiX)*/;
-                int compatY = /*(int)(*/e.Location.Y/* * 100 / dpiY)*/;
-                OnDrawDown(compatX, compatY, dType == DrawType.Eraser);
                 if (IsDraw)
                 {
+                    int compatX = /*(int)(*/e.Location.X/* * 100 / dpiX)*/;
+                    int compatY = /*(int)(*/e.Location.Y/* * 100 / dpiY)*/;
+                    OnDrawDown(compatX, compatY, dType == DrawType.Eraser);
                     Program.SendMessage("{\"method\": \"update_pic\""
                         + ", \"x\": " + compatX.ToString()
                         + ", \"y\": " + compatY.ToString()
