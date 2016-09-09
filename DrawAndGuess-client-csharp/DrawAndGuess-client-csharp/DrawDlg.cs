@@ -32,6 +32,8 @@ namespace DrawAndGuess_client_csharp
 
         bool IsDrawer = false;
 
+        bool IsMaster = false;
+
         /// <summary>  
         /// 画笔颜色  
         /// </summary>  
@@ -54,6 +56,7 @@ namespace DrawAndGuess_client_csharp
             InitializeComponent();
             Program.RegisterMessageHandler(this, this);
 
+            this.IsMaster = isMaster;
             btnStart.Enabled = isMaster;
             btnStart.Text = isMaster ? "开始游戏" : "等待开始";
 
@@ -275,7 +278,7 @@ namespace DrawAndGuess_client_csharp
                 string method = (string)obj["method"];
                 if (method == "start_game" && (bool)obj["success"])
                 {
-                    btnStart.Visible = false;
+                    btnStart.Enabled = false;
                 }
                 if (method == "submit_answer" && (bool)obj["success"])
                 {
@@ -451,7 +454,8 @@ namespace DrawAndGuess_client_csharp
                     LinePrintMessage("2轮游戏已全部结束，" + hint);
                     OnClearPic();
                     scores.Clear();
-                    btnStart.Visible = true;
+                    btnStart.Enabled = IsMaster;
+                    btnStart.Text = IsMaster ? "开始游戏" : "等待开始";
                 }
             }
         }
@@ -527,11 +531,11 @@ namespace DrawAndGuess_client_csharp
             {
                 if (seconds <= 0)
                 {
-                    BeginInvoke(new UIHandler(() => lblTimer.Text = ""));
+                    BeginInvoke(new UIHandler(() => btnStart.Text = ""));
                 }
                 else
                 {
-                    BeginInvoke(new UIHandler(() => lblTimer.Text = "剩余时间：" + seconds + "秒"));
+                    BeginInvoke(new UIHandler(() => btnStart.Text = "剩余时间：" + seconds + "秒"));
                 }
             }
             catch { }
@@ -568,6 +572,24 @@ namespace DrawAndGuess_client_csharp
                     textBox2.Text = "";
                 }
             }
+        }
+
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll")]
+        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+        private void DrawDlg_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x0112, 0xF012, 0);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+            Dispose();
         }
     }
 

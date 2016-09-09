@@ -56,18 +56,6 @@
     <Compile Include="BeginDialog.Designer.cs">
       <DependentUpon>BeginDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateDlg.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateDlg.Designer.cs">
-      <DependentUpon>CreateDlg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="JoinDlg.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="JoinDlg.Designer.cs">
-      <DependentUpon>JoinDlg.cs</DependentUpon>
-    </Compile>
     <Compile Include="DrawDlg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,12 +67,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BeginDialog.resx">
       <DependentUpon>BeginDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CreateDlg.resx">
-      <DependentUpon>CreateDlg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="JoinDlg.resx">
-      <DependentUpon>JoinDlg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DrawDlg.resx">
       <DependentUpon>DrawDlg.cs</DependentUpon>
