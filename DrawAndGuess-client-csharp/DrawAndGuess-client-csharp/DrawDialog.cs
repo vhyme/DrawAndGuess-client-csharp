@@ -256,6 +256,21 @@ namespace DrawAndGuess_client_csharp
             UpdateScore();
         }
 
+        private void SetCurrentDrawer(string nick)
+        {
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if (item.SubItems[1].Text == nick)
+                {
+                    item.Text = "画图中";
+                }
+                else
+                {
+                    item.Text = "";
+                }
+            }
+        }
+
         private void UpdateScore()
         {
             foreach (ListViewItem item in listView1.Items)
@@ -345,17 +360,7 @@ namespace DrawAndGuess_client_csharp
                     button4.Enabled = true;
 
                     string word = (string)obj["word"];
-                    foreach (ListViewItem item in listView1.Items)
-                    {
-                        if (item.SubItems[1].Text == nick)
-                        {
-                            item.Text = "*";
-                        }
-                        else
-                        {
-                            item.Text = "";
-                        }
-                    }
+                    SetCurrentDrawer(nick);
                     UpdateScore();
 
                     LinePrintMessage("词语已生成：[" + word + "]，你现在是画图者，请开始画图。");
@@ -371,17 +376,7 @@ namespace DrawAndGuess_client_csharp
                     button4.Enabled = false;
 
                     string drawerNick = (string)obj["nick"];
-                    foreach (ListViewItem item in listView1.Items)
-                    {
-                        if (item.SubItems[1].Text == drawerNick)
-                        {
-                            item.Text = "*";
-                        }
-                        else
-                        {
-                            item.Text = "";
-                        }
-                    }
+                    SetCurrentDrawer(drawerNick);
                     UpdateScore();
 
                     LinePrintMessage("词语已生成，请\"" + drawerNick + "\"画图。");
