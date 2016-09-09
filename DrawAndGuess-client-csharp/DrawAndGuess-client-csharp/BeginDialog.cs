@@ -62,7 +62,7 @@ namespace DrawAndGuess_client_csharp
                     {
                         int room = int.Parse(obj.Property("room").Value.ToString());
 
-                        DrawDlg dlg = new DrawDlg(room, nick, new string[] { nick }, true);
+                        DrawDialog dlg = new DrawDialog(room, nick, new string[] { nick }, true);
                         dlg.ShowDialog();
                     }
                 }
@@ -72,7 +72,7 @@ namespace DrawAndGuess_client_csharp
                     {
                         string[] nicks = (from str in obj["players"] select (string)str).ToArray();
 
-                        DrawDlg dlg = new DrawDlg(room, nick, nicks, false);
+                        DrawDialog dlg = new DrawDialog(room, nick, nicks, false);
                         dlg.ShowDialog();
                     }
                 }
@@ -128,6 +128,28 @@ namespace DrawAndGuess_client_csharp
         {
             Close();
             Dispose();
+        }
+
+        private void BeginDialog_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+                Opacity = 1;
+            }
+            catch
+            { 
+            }
+        }
+
+        private void BeginDialog_Deactivate(object sender, EventArgs e)
+        {
+            try
+            {
+                Opacity = 0.75;
+            }
+            catch
+            {
+            }
         }
     }
 }

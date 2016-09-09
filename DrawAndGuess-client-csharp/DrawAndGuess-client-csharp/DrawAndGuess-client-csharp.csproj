@@ -56,11 +56,11 @@
     <Compile Include="BeginDialog.Designer.cs">
       <DependentUpon>BeginDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="DrawDlg.cs">
+    <Compile Include="DrawDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DrawDlg.Designer.cs">
-      <DependentUpon>DrawDlg.cs</DependentUpon>
+    <Compile Include="DrawDialog.Designer.cs">
+      <DependentUpon>DrawDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="MessageHandler.cs" />
     <Compile Include="Program.cs" />
@@ -68,8 +68,8 @@
     <EmbeddedResource Include="BeginDialog.resx">
       <DependentUpon>BeginDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DrawDlg.resx">
-      <DependentUpon>DrawDlg.cs</DependentUpon>
+    <EmbeddedResource Include="DrawDialog.resx">
+      <DependentUpon>DrawDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
