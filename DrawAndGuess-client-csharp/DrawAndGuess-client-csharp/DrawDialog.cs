@@ -365,6 +365,7 @@ namespace DrawAndGuess_client_csharp
 
                     LinePrintMessage("词语已生成：[" + word + "]，你现在是画图者，请开始画图。");
                     textBox2.Enabled = false;
+                    textBox2.Text = HintDisabled;
                     StartTimer();
                 }
                 else if (_event == "word_generated")
@@ -381,12 +382,21 @@ namespace DrawAndGuess_client_csharp
 
                     LinePrintMessage("词语已生成，请\"" + drawerNick + "\"画图。");
                     textBox2.Enabled = true;
+                    if (textBox2.Text == HintDisabled)
+                    {
+                        textBox2.Text = Hint;
+                    }
                     StartTimer();
                 }
                 else if (_event == "time_up")
                 {
-                    LinePrintMessage("本局游戏结束");
+                    string word = (string)obj["word"];
+                    LinePrintMessage("本局游戏结束，答案：" + word);
                     textBox2.Enabled = true;
+                    if (textBox2.Text == HintDisabled)
+                    {
+                        textBox2.Text = Hint;
+                    }
                     g.Clear(Color.White);
                     reDraw();
                     IsDrawer = false;
@@ -585,6 +595,7 @@ namespace DrawAndGuess_client_csharp
         }
 
         public const string Hint = "点我聊天或提交答案";
+        public const string HintDisabled = "画图者不能参与聊天";
 
         private void textBox2_Enter(object sender, EventArgs e)
         {
