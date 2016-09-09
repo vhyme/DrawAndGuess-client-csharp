@@ -405,6 +405,22 @@ namespace DrawAndGuess_client_csharp
                     button3.Enabled = false;
                     button4.Enabled = false;
                 }
+                else if (_event == "all_win")
+                {
+                    LinePrintMessage("大家都猜对了，本局游戏结束");
+                    textBox2.Enabled = true;
+                    if (textBox2.Text == HintDisabled)
+                    {
+                        textBox2.Text = Hint;
+                    }
+                    g.Clear(Color.White);
+                    reDraw();
+                    IsDrawer = false;
+                    button1.Enabled = false;
+                    button2.Enabled = false;
+                    button3.Enabled = false;
+                    button4.Enabled = false;
+                }
                 else if (_event == "answer_submitted")
                 {
                     string nick = (string)obj["nick"];

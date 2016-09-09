@@ -151,7 +151,6 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("微软雅黑", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox2.ImeMode = System.Windows.Forms.ImeMode.On;
             this.textBox2.Location = new System.Drawing.Point(16, 374);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
