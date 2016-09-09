@@ -232,11 +232,11 @@ namespace DrawAndGuess_client_csharp
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(31, 267);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 58);
+            this.label1.Size = new System.Drawing.Size(201, 57);
             this.label1.TabIndex = 4;
             this.label1.Text = "你画我猜";
             // 

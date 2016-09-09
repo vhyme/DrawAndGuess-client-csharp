@@ -437,16 +437,22 @@ namespace DrawAndGuess_client_csharp
                 else if (_event == "game_end")
                 {
                     int maxScore = 0;
-                    string best_nick = "";
+                    List<string> best_nicks = new List<string>();
                     foreach (KeyValuePair<string, int> pair in scores)
                     {
                         if (pair.Value > maxScore)
                         {
                             maxScore = pair.Value;
-                            best_nick = pair.Key;
+                            best_nicks.Clear();
+                            best_nicks.Add(pair.Key);
+                        }
+                        if (pair.Value == maxScore)
+                        {
+                            best_nicks.Add(pair.Key);
                         }
                     }
-                    string hint = maxScore == 0 ? "没有人得分。" : (best_nick + "获得了最高分" + maxScore.ToString() + "分。");
+                    string hint = maxScore == 0 ? "没有人得分。" : 
+                        (string.Join("、", best_nicks.ToArray()) + "获得了最高分" + maxScore.ToString() + "分。");
                     LinePrintMessage("2轮游戏已全部结束，" + hint);
                     OnClearPic();
                     scores.Clear();
