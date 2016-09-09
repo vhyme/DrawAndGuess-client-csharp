@@ -7,6 +7,7 @@ using SimpleTCP;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 using System.Net.Sockets;
+using System.Diagnostics;
 
 namespace DrawAndGuess_client_csharp
 {
@@ -45,18 +46,14 @@ namespace DrawAndGuess_client_csharp
                     }
 
                     JObject obj = JObject.Parse(msg.MessageString);
-                    if (obj.Property("method") == null || obj.Property("method").ToString() == "")
-                    { // 服务器主动发送的消息
-
-                    }
-                    else
+                    if ((string)obj["event"] == "ip_duplicate")
                     {
-                        if (obj.Property("success") != null
-                            && obj.Property("success").ToString() != ""
-                            && obj.Property("success").Value.ToString() == "False")
-                        {
-                            MessageBox.Show(obj.Property("reason").Value.ToString());
-                        }
+                        MessageBox.Show("相同IP已有人登录，你被迫下线，请更换网络后重试");
+                        System.Environment.Exit(0);
+                    }
+                    else if (obj["success"] != null && !(bool)obj["success"])
+                    {
+                        MessageBox.Show(obj.Property("reason").Value.ToString());
                     }
                 };
 
@@ -67,7 +64,7 @@ namespace DrawAndGuess_client_csharp
             }
             catch (SocketException)
             {
-                MessageBox.Show("网络连接失败，请重试");
+                MessageBox.Show("连接服务器失败，请重试");
             }
         }
 
