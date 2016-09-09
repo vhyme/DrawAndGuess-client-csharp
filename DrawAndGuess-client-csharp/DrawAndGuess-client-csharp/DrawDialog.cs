@@ -50,6 +50,20 @@ namespace DrawAndGuess_client_csharp
             set { p.Width = value; }
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                if (!DesignMode)
+                {
+                    cp.ExStyle |= (int)0x02000000L;
+                    cp.ClassStyle |= 0x20000;
+                }
+                return cp;
+            }
+        }
+
         public DrawDialog(int room, string nick, string[] nicks, bool isMaster)
         {
             //Console.WriteLine(dpiX);
@@ -484,7 +498,9 @@ namespace DrawAndGuess_client_csharp
                     }
                     string hint = maxScore == 0 ? "没有人得分。" : 
                         (string.Join("、", best_nicks.ToArray()) + "获得了最高分" + maxScore.ToString() + "分。");
-                    LinePrintMessage("游戏已全部结束，" + hint);
+                    MessageBox.Show("游戏已全部结束，" + hint);
+                    timer.Stop();
+                    UpdateTimer();
                     OnClearPic();
                     scores.Clear();
                     btnStart.Enabled = IsMaster;

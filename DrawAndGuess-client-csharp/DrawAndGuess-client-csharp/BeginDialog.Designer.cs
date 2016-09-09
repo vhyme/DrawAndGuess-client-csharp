@@ -132,6 +132,7 @@ namespace DrawAndGuess_client_csharp
             this.tbxNickCreate.Name = "tbxNickCreate";
             this.tbxNickCreate.Size = new System.Drawing.Size(340, 38);
             this.tbxNickCreate.TabIndex = 1;
+            this.tbxNickCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxNickCreate_KeyDown);
             // 
             // btnCreateSubmit
             // 
@@ -187,6 +188,7 @@ namespace DrawAndGuess_client_csharp
             this.tbxRoomId.Name = "tbxRoomId";
             this.tbxRoomId.Size = new System.Drawing.Size(165, 38);
             this.tbxRoomId.TabIndex = 3;
+            this.tbxRoomId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxRoomId_KeyDown);
             // 
             // label3
             // 
@@ -209,6 +211,7 @@ namespace DrawAndGuess_client_csharp
             this.tbxNickJoin.Name = "tbxNickJoin";
             this.tbxNickJoin.Size = new System.Drawing.Size(165, 38);
             this.tbxNickJoin.TabIndex = 1;
+            this.tbxNickJoin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxNickJoin_KeyDown);
             // 
             // btnJoinSubmit
             // 
@@ -269,8 +272,10 @@ namespace DrawAndGuess_client_csharp
             this.Controls.Add(this.panel1);
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "BeginDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "你画我猜";
             this.Activated += new System.EventHandler(this.BeginDialog_Activated);
             this.Deactivate += new System.EventHandler(this.BeginDialog_Deactivate);

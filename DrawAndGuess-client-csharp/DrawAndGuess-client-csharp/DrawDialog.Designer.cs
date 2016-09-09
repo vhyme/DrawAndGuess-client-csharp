@@ -288,6 +288,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DrawDialog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "你画我猜-游戏房间";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DrawDialog_FormClosing);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DrawDialog_MouseDown);
