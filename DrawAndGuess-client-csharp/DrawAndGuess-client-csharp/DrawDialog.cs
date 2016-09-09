@@ -60,7 +60,7 @@ namespace DrawAndGuess_client_csharp
             btnStart.Enabled = isMaster;
             btnStart.Text = isMaster ? "开始游戏" : "等待开始";
 
-            this.Text = "你画我猜 - " + room.ToString() + "号房间";
+            label2.Text = room.ToString() + "号房间";
             this.nick = nick;
             textBox2.Text = Hint;
 
