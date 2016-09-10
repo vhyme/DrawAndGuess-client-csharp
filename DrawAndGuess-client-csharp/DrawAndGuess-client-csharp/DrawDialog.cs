@@ -18,12 +18,14 @@ namespace DrawAndGuess_client_csharp
         //float dpiX = graphics.DpiX;
         //float dpiY = graphics.DpiY;
 
+        const int DRAWER_SCORE = 10, GUESSER_SCORE = 15, GAME_TIME = 90;
+
         Bitmap originImg;
         Image finishImg;
         Graphics g;
         DrawType dType = DrawType.Pen;
         Point StartPoint, EndPoint;
-        Pen p = new Pen(Color.Black, 1);
+        Pen p = new Pen(Color.Black, 2);
         bool IsDraw;
 
         Dictionary<string, int> scores = new Dictionary<string,int>();
@@ -67,7 +69,7 @@ namespace DrawAndGuess_client_csharp
             listView1.Items.Clear();
             foreach (string member in nicks)
             {
-                ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
+                ListViewItem item = new ListViewItem(new string[] { member, "", "0" });
                 listView1.Items.Add(item);
             }
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
@@ -114,6 +116,7 @@ namespace DrawAndGuess_client_csharp
         {
             IsDraw = false;
             g.Clear(Color.White);
+            DrawColor = Color.Black;
             reDraw();
         }
 
@@ -142,8 +145,6 @@ namespace DrawAndGuess_client_csharp
                     + "}");
             }
         }
-
-
 
         /// <summary>  
         /// 画笔宽度设置  
@@ -259,13 +260,13 @@ namespace DrawAndGuess_client_csharp
             CurrentDrawer = nick;
             foreach (ListViewItem item in listView1.Items)
             {
-                if (item.SubItems[1].Text == nick)
+                if (item.SubItems[0].Text == nick)
                 {
-                    item.Text = "画图中";
+                    item.SubItems[1].Text = "画图中";
                 }
                 else
                 {
-                    item.Text = "";
+                    item.SubItems[1].Text = "";
                 }
             }
         }
@@ -274,9 +275,9 @@ namespace DrawAndGuess_client_csharp
         {
             foreach (ListViewItem item in listView1.Items)
             {
-                if (scores.ContainsKey(item.SubItems[1].Text))
+                if (scores.ContainsKey(item.SubItems[0].Text))
                 {
-                    item.SubItems[2].Text = scores[item.SubItems[1].Text].ToString();
+                    item.SubItems[2].Text = scores[item.SubItems[0].Text].ToString();
                 }
                 else
                 {
@@ -301,8 +302,8 @@ namespace DrawAndGuess_client_csharp
                     {
                         LinePrintMessage("正确答案消息已隐藏，仅自己可见。");
                         LinePrintMessage("\"" + nick + "\"猜对了正确答案");
-                        AddScore(nick, 10);
-                        AddScore(CurrentDrawer, 10);
+                        AddScore(nick, GUESSER_SCORE);
+                        AddScore(CurrentDrawer, DRAWER_SCORE);
                     }
                 }
             }
@@ -313,7 +314,7 @@ namespace DrawAndGuess_client_csharp
                 if (_event == "user_join")// 用户加入
                 {
                     string nick = (string)obj["nick"];
-                    ListViewItem item = new ListViewItem(new string[] { "", nick, "0" });
+                    ListViewItem item = new ListViewItem(new string[] { nick, "", "0" });
                     listView1.Items.Add(item);
                 }
                 else if (_event == "user_exit")// 用户退出
@@ -321,7 +322,7 @@ namespace DrawAndGuess_client_csharp
                     string nick = (string)obj["nick"];
                     foreach (ListViewItem item in listView1.Items)
                     {
-                        if (item.SubItems[1].Text == nick)
+                        if (item.SubItems[0].Text == nick)
                         {
                             listView1.Items.Remove(item);
                         }
@@ -343,7 +344,7 @@ namespace DrawAndGuess_client_csharp
                         string[] members = (from str in obj["players"] select (string)str).ToArray();
                         foreach (string member in members)
                         {
-                            ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
+                            ListViewItem item = new ListViewItem(new string[] { member, "", "0" });
                             listView1.Items.Add(item);
                         }
                     }
@@ -427,8 +428,8 @@ namespace DrawAndGuess_client_csharp
                     if ((bool)obj["win"])
                     {
                         LinePrintMessage("\"" + nick + "\"猜对了正确答案");
-                        AddScore(nick, 10);
-                        AddScore(CurrentDrawer, 10);
+                        AddScore(nick, GUESSER_SCORE);
+                        AddScore(CurrentDrawer, DRAWER_SCORE);
                     }
                     else
                     {
@@ -469,7 +470,6 @@ namespace DrawAndGuess_client_csharp
                     timerNotDrawer.Enabled = false;
                     timerNotDrawer.Stop();
                     UpdateTimer();
-                    scores.Clear();
 
                     int maxScore = 0;
                     List<string> best_nicks = new List<string>();
@@ -489,6 +489,7 @@ namespace DrawAndGuess_client_csharp
                     string hint = maxScore == 0 ? "没有人得分。" : 
                         (string.Join("、", best_nicks.ToArray()) + "获得了最高分" + maxScore.ToString() + "分。");
                     MessageBox.Show("游戏已全部结束，" + hint);
+                    scores.Clear();
                     btnStart.Enabled = IsMaster;
                     btnStart.Text = IsMaster ? "开始游戏" : "等待开始";
                 }
@@ -527,7 +528,7 @@ namespace DrawAndGuess_client_csharp
 
         protected void StartTimerDrawer()
         {
-            seconds = 90;
+            seconds = GAME_TIME;
             UpdateTimer();
             timerDrawer = new System.Timers.Timer();
             timerDrawer.Enabled = true;
@@ -539,7 +540,7 @@ namespace DrawAndGuess_client_csharp
 
         protected void StartTimerNotDrawer()
         {
-            seconds = 90;
+            seconds = GAME_TIME;
             UpdateTimer();
             timerNotDrawer = new System.Timers.Timer();
             timerNotDrawer.Enabled = true;
