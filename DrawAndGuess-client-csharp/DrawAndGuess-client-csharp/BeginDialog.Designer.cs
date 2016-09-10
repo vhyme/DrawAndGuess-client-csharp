@@ -115,7 +115,7 @@ namespace DrawAndGuess_client_csharp
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(42, 50);
             this.label2.Name = "label2";
@@ -127,7 +127,7 @@ namespace DrawAndGuess_client_csharp
             // 
             this.tbxNickCreate.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tbxNickCreate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxNickCreate.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxNickCreate.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbxNickCreate.Location = new System.Drawing.Point(47, 82);
             this.tbxNickCreate.Name = "tbxNickCreate";
             this.tbxNickCreate.Size = new System.Drawing.Size(340, 38);
@@ -171,7 +171,7 @@ namespace DrawAndGuess_client_csharp
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label4.Location = new System.Drawing.Point(42, 50);
             this.label4.Name = "label4";
@@ -183,7 +183,7 @@ namespace DrawAndGuess_client_csharp
             // 
             this.tbxRoomId.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tbxRoomId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxRoomId.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxRoomId.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbxRoomId.Location = new System.Drawing.Point(47, 82);
             this.tbxRoomId.Name = "tbxRoomId";
             this.tbxRoomId.Size = new System.Drawing.Size(165, 38);
@@ -194,7 +194,7 @@ namespace DrawAndGuess_client_csharp
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label3.Location = new System.Drawing.Point(217, 50);
             this.label3.Name = "label3";
@@ -206,7 +206,7 @@ namespace DrawAndGuess_client_csharp
             // 
             this.tbxNickJoin.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.tbxNickJoin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxNickJoin.Font = new System.Drawing.Font("Microsoft YaHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxNickJoin.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbxNickJoin.Location = new System.Drawing.Point(222, 82);
             this.tbxNickJoin.Name = "tbxNickJoin";
             this.tbxNickJoin.Size = new System.Drawing.Size(165, 38);
@@ -235,7 +235,7 @@ namespace DrawAndGuess_client_csharp
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("i", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(31, 267);
             this.label1.Name = "label1";
@@ -250,7 +250,7 @@ namespace DrawAndGuess_client_csharp
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(743, -1);
             this.button1.Name = "button1";
