@@ -70,7 +70,14 @@ namespace DrawAndGuess_client_csharp
 
         public static void SendMessage(string message)
         {
-            client.WriteLine(message + '\n');
+            try
+            {
+                client.WriteLine(message + '\n');
+            }
+            catch
+            {
+                MessageBox.Show("与服务器通讯出错，请重试");
+            }
         }
 
         public static void RegisterMessageHandler(Control control, MessageHandler handler)
