@@ -345,6 +345,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "generate_word")
                 {
+                    OnClearPic();
                     IsDrawer = true;
                     button1.Enabled = true;
                     button2.Enabled = true;
@@ -354,7 +355,6 @@ namespace DrawAndGuess_client_csharp
                     string word = (string)obj["word"];
                     SetCurrentDrawer(nick);
                     UpdateScore();
-                    OnClearPic();
 
                     LinePrintMessage("词语已生成：[" + word + "]，你现在是画图者，请开始画图。");
                     textBox2.Enabled = false;
@@ -363,6 +363,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "word_generated")
                 {
+                    OnClearPic();
                     IsDrawer = false;
                     button1.Enabled = false;
                     button2.Enabled = false;
@@ -372,7 +373,6 @@ namespace DrawAndGuess_client_csharp
                     string drawerNick = (string)obj["nick"];
                     SetCurrentDrawer(drawerNick);
                     UpdateScore();
-                    OnClearPic();
 
                     LinePrintMessage("词语已生成，请\"" + drawerNick + "\"画图。");
                     textBox2.Enabled = true;
@@ -384,6 +384,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "time_up")
                 {
+                    OnClearPic();
                     string word = (string)obj["word"];
                     LinePrintMessage("本局游戏结束，答案：" + word);
                     textBox2.Enabled = true;
@@ -392,7 +393,6 @@ namespace DrawAndGuess_client_csharp
                         textBox2.Text = Hint;
                     }
                     IsDrawer = false;
-                    OnClearPic();
                     button1.Enabled = false;
                     button2.Enabled = false;
                     button3.Enabled = false;
@@ -400,6 +400,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "all_win")
                 {
+                    OnClearPic();
                     LinePrintMessage("大家都猜对了，本局游戏结束");
                     textBox2.Enabled = true;
                     if (textBox2.Text == HintDisabled)
@@ -407,7 +408,6 @@ namespace DrawAndGuess_client_csharp
                         textBox2.Text = Hint;
                     }
                     IsDrawer = false;
-                    OnClearPic();
                     button1.Enabled = false;
                     button2.Enabled = false;
                     button3.Enabled = false;
@@ -455,6 +455,12 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "game_end")
                 {
+                    OnClearPic();
+                    timer.Enabled = false;
+                    timer.Stop();
+                    UpdateTimer();
+                    scores.Clear();
+
                     int maxScore = 0;
                     List<string> best_nicks = new List<string>();
                     foreach (KeyValuePair<string, int> pair in scores)
@@ -473,11 +479,6 @@ namespace DrawAndGuess_client_csharp
                     string hint = maxScore == 0 ? "没有人得分。" : 
                         (string.Join("、", best_nicks.ToArray()) + "获得了最高分" + maxScore.ToString() + "分。");
                     MessageBox.Show("游戏已全部结束，" + hint);
-                    timer.Enabled = false;
-                    timer.Stop();
-                    UpdateTimer();
-                    OnClearPic();
-                    scores.Clear();
                     btnStart.Enabled = IsMaster;
                     btnStart.Text = IsMaster ? "开始游戏" : "等待开始";
                 }
