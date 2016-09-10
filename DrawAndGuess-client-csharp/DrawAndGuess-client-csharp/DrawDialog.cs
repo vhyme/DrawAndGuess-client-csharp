@@ -520,43 +520,41 @@ namespace DrawAndGuess_client_csharp
 
         protected int seconds = 0;
 
-        protected System.Timers.Timer timerDrawer = new System.Timers.Timer();
-        protected System.Timers.Timer timerNotDrawer = new System.Timers.Timer();
+        protected System.Timers.Timer timerDrawer;
+        protected System.Timers.Timer timerNotDrawer;
+
+        private System.Timers.Timer currentTimer;
 
         protected void StartTimerDrawer()
         {
-            if (timerDrawer != null)
-            {
-                timerDrawer.Stop();
-            }
-
             seconds = 90;
             UpdateTimer();
             timerDrawer = new System.Timers.Timer();
             timerDrawer.Enabled = true;
             timerDrawer.Interval = 1000;//执行间隔时间,单位为毫秒  
             timerDrawer.Start();
+            currentTimer = timerDrawer;
             timerDrawer.Elapsed += new System.Timers.ElapsedEventHandler(TimerDrawer_Elapsed);
         }
 
         protected void StartTimerNotDrawer()
         {
-            if (timerNotDrawer != null)
-            {
-                timerNotDrawer.Stop();
-            }
-
             seconds = 90;
             UpdateTimer();
             timerNotDrawer = new System.Timers.Timer();
             timerNotDrawer.Enabled = true;
             timerNotDrawer.Interval = 1000;//执行间隔时间,单位为毫秒  
             timerNotDrawer.Start();
+            currentTimer = timerNotDrawer;
             timerNotDrawer.Elapsed += new System.Timers.ElapsedEventHandler(TimerNotDrawer_Elapsed);
         }
 
         protected void TimerDrawer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            if (currentTimer != sender)
+            {
+                return;
+            }
             seconds--;
             UpdateTimer();
             if (seconds <= 0 && timerDrawer != null)
@@ -569,6 +567,10 @@ namespace DrawAndGuess_client_csharp
 
         protected void TimerNotDrawer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            if (currentTimer != sender)
+            {
+                return;
+            }
             seconds--;
             UpdateTimer();
             if (seconds <= 0 && timerNotDrawer != null)
