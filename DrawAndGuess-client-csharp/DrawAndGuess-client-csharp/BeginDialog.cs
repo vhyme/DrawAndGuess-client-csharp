@@ -72,8 +72,8 @@ namespace DrawAndGuess_client_csharp
                     {
                         string[] nicks = (from str in obj["players"] select (string)str).ToArray();
 
-                        DrawDialog dlg = new DrawDialog(room, nick, nicks, false);
-                        dlg.ShowDialog();
+                        drawDialog.SetNicks(nicks);
+                        drawDialog.ShowDialog();
                     }
                 }
             }
@@ -92,6 +92,8 @@ namespace DrawAndGuess_client_csharp
             }
         }
 
+        private DrawDialog drawDialog;
+
         private void btnJoinSubmit_Click(object sender, EventArgs e)
         {
             nick = tbxNickJoin.Text;
@@ -109,6 +111,9 @@ namespace DrawAndGuess_client_csharp
                 MessageBox.Show("Too short nickname!");
                 return;
             }
+
+            // 提前构造，防止收不到游戏开始的消息
+            drawDialog = new DrawDialog(room, nick, new string[]{}, false);
             Program.SendMessage("{\"method\": \"join_room\", \"room\": " + room + ", \"nick\": \"" + nick + "\"}");
         }
 
@@ -128,28 +133,6 @@ namespace DrawAndGuess_client_csharp
         {
             Close();
             Dispose();
-        }
-
-        private void BeginDialog_Activated(object sender, EventArgs e)
-        {
-            try
-            {
-                Opacity = 1;
-            }
-            catch
-            { 
-            }
-        }
-
-        private void BeginDialog_Deactivate(object sender, EventArgs e)
-        {
-            try
-            {
-                Opacity = 0.75;
-            }
-            catch
-            {
-            }
         }
 
         private void tbxNickCreate_KeyDown(object sender, KeyEventArgs e)

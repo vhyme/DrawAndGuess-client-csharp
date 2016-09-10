@@ -90,6 +90,16 @@ namespace DrawAndGuess_client_csharp
             finishImg = (Image)originImg.Clone();
         }
 
+        public void SetNicks(string[] nicks)
+        {
+            listView1.Items.Clear();
+            foreach (string member in nicks)
+            {
+                ListViewItem item = new ListViewItem(new string[] { member, "", "0" });
+                listView1.Items.Add(item);
+            }
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             dType = DrawType.Pen;
