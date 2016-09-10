@@ -277,8 +277,6 @@ namespace DrawAndGuess_client_csharp
             this.Name = "BeginDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "你画我猜";
-            this.Activated += new System.EventHandler(this.BeginDialog_Activated);
-            this.Deactivate += new System.EventHandler(this.BeginDialog_Deactivate);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BeginDialog_MouseDown);
             this.pnlJoin.ResumeLayout(false);
             this.pnlJoin.PerformLayout();
