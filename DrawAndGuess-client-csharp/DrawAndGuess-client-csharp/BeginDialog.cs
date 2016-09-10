@@ -18,20 +18,6 @@ namespace DrawAndGuess_client_csharp
         private string nick;
         private int room;
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                if (!DesignMode)
-                {
-                    cp.ExStyle |= (int)0x02000000L;
-                    cp.ClassStyle |= 0x20000;
-                }
-                return cp;
-            }
-        }
-
         public BeginDialog()
         {
             InitializeComponent();

@@ -50,20 +50,6 @@ namespace DrawAndGuess_client_csharp
             set { p.Width = value; }
         }
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                if (!DesignMode)
-                {
-                    cp.ExStyle |= (int)0x02000000L;
-                    cp.ClassStyle |= 0x20000;
-                }
-                return cp;
-            }
-        }
-
         public DrawDialog(int room, string nick, string[] nicks, bool isMaster)
         {
             //Console.WriteLine(dpiX);
@@ -84,7 +70,6 @@ namespace DrawAndGuess_client_csharp
                 ListViewItem item = new ListViewItem(new string[] { "", member, "0" });
                 listView1.Items.Add(item);
             }
-
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.UpdateStyles();
 
@@ -100,18 +85,6 @@ namespace DrawAndGuess_client_csharp
             picDraw.Image = originImg;
             finishImg = (Image)originImg.Clone();
         }
-
-        /*protected override CreateParams CreateParams
-        {
-            get
-            {
-                int CS_NOCLOSE = 0x200;
-                CreateParams parameters = base.CreateParams;
-                parameters.ClassStyle |= CS_NOCLOSE;
-
-                return parameters;
-            }
-        }*/
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -499,6 +472,7 @@ namespace DrawAndGuess_client_csharp
                     string hint = maxScore == 0 ? "没有人得分。" : 
                         (string.Join("、", best_nicks.ToArray()) + "获得了最高分" + maxScore.ToString() + "分。");
                     MessageBox.Show("游戏已全部结束，" + hint);
+                    timer.Enabled = false;
                     timer.Stop();
                     UpdateTimer();
                     OnClearPic();

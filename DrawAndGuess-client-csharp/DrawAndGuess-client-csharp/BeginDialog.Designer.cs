@@ -87,15 +87,15 @@ namespace DrawAndGuess_client_csharp
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.panel1.Controls.Add(this.pnlCreate);
             this.panel1.Controls.Add(this.pnlJoin);
             this.panel1.Controls.Add(this.btnCreate);
             this.panel1.Controls.Add(this.btnJoin);
-            this.panel1.Location = new System.Drawing.Point(0, 351);
+            this.panel1.Location = new System.Drawing.Point(2, 351);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(810, 203);
+            this.panel1.Size = new System.Drawing.Size(805, 200);
             this.panel1.TabIndex = 3;
             // 
             // pnlCreate
