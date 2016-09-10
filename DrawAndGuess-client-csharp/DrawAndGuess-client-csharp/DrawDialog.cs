@@ -321,8 +321,8 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "room_expire")// 房间解散
                 {
-                    MessageBox.Show("有人退出了房间，游戏结束。");
                     Close();
+                    MessageBox.Show("有人退出了房间，游戏结束。");
                     Dispose();
                 }
                 else if (_event == "game_start")
@@ -359,7 +359,7 @@ namespace DrawAndGuess_client_csharp
                     LinePrintMessage("词语已生成：[" + word + "]，你现在是画图者，请开始画图。");
                     textBox2.Enabled = false;
                     textBox2.Text = HintDisabled;
-                    StartTimer();
+                    StartTimerDrawer();
                 }
                 else if (_event == "word_generated")
                 {
@@ -380,7 +380,7 @@ namespace DrawAndGuess_client_csharp
                     {
                         textBox2.Text = Hint;
                     }
-                    StartTimer();
+                    StartTimerNotDrawer();
                 }
                 else if (_event == "time_up")
                 {
@@ -456,8 +456,10 @@ namespace DrawAndGuess_client_csharp
                 else if (_event == "game_end")
                 {
                     OnClearPic();
-                    timer.Enabled = false;
-                    timer.Stop();
+                    timerDrawer.Enabled = false;
+                    timerDrawer.Stop();
+                    timerNotDrawer.Enabled = false;
+                    timerNotDrawer.Stop();
                     UpdateTimer();
                     scores.Clear();
 
@@ -510,42 +512,62 @@ namespace DrawAndGuess_client_csharp
 
         protected int seconds = 0;
 
-        protected System.Timers.Timer timer;
+        protected System.Timers.Timer timerDrawer = new System.Timers.Timer();
+        protected System.Timers.Timer timerNotDrawer = new System.Timers.Timer();
 
-        protected void StartTimer()
+        protected void StartTimerDrawer()
         {
-            if (timer != null)
+            if (timerDrawer != null)
             {
-                timer.Stop();
+                timerDrawer.Stop();
             }
 
             seconds = 90;
             UpdateTimer();
-            timer = new System.Timers.Timer();
-            timer.Enabled = true;
-            timer.Interval = 1000;//执行间隔时间,单位为毫秒  
-            timer.Start();
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(Timer1_Elapsed);
+            timerDrawer = new System.Timers.Timer();
+            timerDrawer.Enabled = true;
+            timerDrawer.Interval = 1000;//执行间隔时间,单位为毫秒  
+            timerDrawer.Start();
+            timerDrawer.Elapsed += new System.Timers.ElapsedEventHandler(TimerDrawer_Elapsed);
         }
 
-        protected void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        protected void StartTimerNotDrawer()
+        {
+            if (timerNotDrawer != null)
+            {
+                timerNotDrawer.Stop();
+            }
+
+            seconds = 90;
+            UpdateTimer();
+            timerNotDrawer = new System.Timers.Timer();
+            timerNotDrawer.Enabled = true;
+            timerNotDrawer.Interval = 1000;//执行间隔时间,单位为毫秒  
+            timerNotDrawer.Start();
+            timerNotDrawer.Elapsed += new System.Timers.ElapsedEventHandler(TimerNotDrawer_Elapsed);
+        }
+
+        protected void TimerDrawer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             seconds--;
             UpdateTimer();
-            if (seconds <= 0 && timer != null)
+            if (seconds <= 0 && timerDrawer != null)
             {
-                timer.Stop();
-                OnTimeUp();
+                timerDrawer.Stop();
+                Program.SendMessage("{\"method\": \"time_up\"}");
             }
             UpdateTimer();
         }
 
-        protected void OnTimeUp()
+        protected void TimerNotDrawer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            if (IsDrawer)
+            seconds--;
+            UpdateTimer();
+            if (seconds <= 0 && timerNotDrawer != null)
             {
-                Program.SendMessage("{\"method\": \"time_up\"}");
+                timerNotDrawer.Stop();
             }
+            UpdateTimer();
         }
 
         public delegate void UIHandler();
