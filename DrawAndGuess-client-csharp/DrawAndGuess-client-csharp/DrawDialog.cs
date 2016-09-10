@@ -104,6 +104,7 @@ namespace DrawAndGuess_client_csharp
 
         private void OnClearPic()
         {
+            IsDraw = false;
             g.Clear(Color.White);
             reDraw();
         }
