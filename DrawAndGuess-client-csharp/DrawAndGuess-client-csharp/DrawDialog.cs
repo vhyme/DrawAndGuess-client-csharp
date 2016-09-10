@@ -36,6 +36,8 @@ namespace DrawAndGuess_client_csharp
 
         bool IsMaster = false;
 
+        private int round = 0;
+
         /// <summary>  
         /// 画笔颜色  
         /// </summary>  
@@ -350,7 +352,15 @@ namespace DrawAndGuess_client_csharp
                     }
 
                     ClearPic();
-                    LinePrintMessage("游戏开始，当前是第" + round + "轮");
+                    if (this.round == round)
+                    {
+                        LinePrintMessage("\r\n本轮新一局游戏开始");
+                    }
+                    else
+                    {
+                        LinePrintMessage("\r\n游戏开始，当前是第" + round + "轮");
+                    }
+                    this.round = round;
                 }
                 else if (_event == "generate_word")
                 {
@@ -465,6 +475,7 @@ namespace DrawAndGuess_client_csharp
                 else if (_event == "game_end")
                 {
                     ClearPic();
+                    round = 0;
                     timerDrawer.Enabled = false;
                     timerDrawer.Stop();
                     timerNotDrawer.Enabled = false;
