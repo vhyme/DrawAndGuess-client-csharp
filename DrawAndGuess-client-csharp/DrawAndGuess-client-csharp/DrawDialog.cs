@@ -98,7 +98,15 @@ namespace DrawAndGuess_client_csharp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Program.SendMessage("{\"method\": \"clear_pic\"}");
+            ClearPic();
+        }
+
+        private void ClearPic()
+        {
+            if (IsDrawer)
+            {
+                Program.SendMessage("{\"method\": \"clear_pic\"}");
+            }
             OnClearPic();
         }
 
@@ -340,12 +348,12 @@ namespace DrawAndGuess_client_csharp
                         }
                     }
 
-                    OnClearPic();
+                    ClearPic();
                     LinePrintMessage("游戏开始，当前是第" + round + "轮");
                 }
                 else if (_event == "generate_word")
                 {
-                    OnClearPic();
+                    ClearPic();
                     IsDrawer = true;
                     button1.Enabled = true;
                     button2.Enabled = true;
@@ -363,7 +371,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "word_generated")
                 {
-                    OnClearPic();
+                    ClearPic();
                     IsDrawer = false;
                     button1.Enabled = false;
                     button2.Enabled = false;
@@ -384,7 +392,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "time_up")
                 {
-                    OnClearPic();
+                    ClearPic();
                     string word = (string)obj["word"];
                     LinePrintMessage("本局游戏结束，答案：" + word);
                     textBox2.Enabled = true;
@@ -400,7 +408,7 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "all_win")
                 {
-                    OnClearPic();
+                    ClearPic();
                     LinePrintMessage("大家都猜对了，本局游戏结束");
                     textBox2.Enabled = true;
                     if (textBox2.Text == HintDisabled)
@@ -451,11 +459,11 @@ namespace DrawAndGuess_client_csharp
                 }
                 else if (_event == "pic_clear")
                 {
-                    OnClearPic();
+                    ClearPic();
                 }
                 else if (_event == "game_end")
                 {
-                    OnClearPic();
+                    ClearPic();
                     timerDrawer.Enabled = false;
                     timerDrawer.Stop();
                     timerNotDrawer.Enabled = false;
