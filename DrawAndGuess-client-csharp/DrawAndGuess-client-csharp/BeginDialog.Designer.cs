@@ -35,15 +35,15 @@ namespace DrawAndGuess_client_csharp
             this.btnJoin = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.pnlJoin = new System.Windows.Forms.Panel();
-            this.btnJoinSubmit = new System.Windows.Forms.Button();
-            this.tbxNickJoin = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbxRoomId = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.tbxRoomId = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbxNickJoin = new System.Windows.Forms.TextBox();
+            this.btnJoinSubmit = new System.Windows.Forms.Button();
             this.pnlCreate = new System.Windows.Forms.Panel();
-            this.btnCreateSubmit = new System.Windows.Forms.Button();
-            this.tbxNickCreate = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.tbxNickCreate = new System.Windows.Forms.TextBox();
+            this.btnCreateSubmit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlJoin.SuspendLayout();
             this.pnlCreate.SuspendLayout();
@@ -87,7 +87,7 @@ namespace DrawAndGuess_client_csharp
             this.btnJoin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJoin.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnJoin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnJoin.Location = new System.Drawing.Point(41, 113);
+            this.btnJoin.Location = new System.Drawing.Point(29, 107);
             this.btnJoin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnJoin.Name = "btnJoin";
             this.btnJoin.Size = new System.Drawing.Size(175, 51);
@@ -105,7 +105,7 @@ namespace DrawAndGuess_client_csharp
             this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreate.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnCreate.Location = new System.Drawing.Point(41, 40);
+            this.btnCreate.Location = new System.Drawing.Point(29, 34);
             this.btnCreate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(175, 51);
@@ -122,12 +122,58 @@ namespace DrawAndGuess_client_csharp
             this.pnlJoin.Controls.Add(this.label3);
             this.pnlJoin.Controls.Add(this.tbxNickJoin);
             this.pnlJoin.Controls.Add(this.btnJoinSubmit);
-            this.pnlJoin.Location = new System.Drawing.Point(230, 0);
+            this.pnlJoin.Location = new System.Drawing.Point(217, 0);
             this.pnlJoin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlJoin.Name = "pnlJoin";
             this.pnlJoin.Size = new System.Drawing.Size(555, 203);
             this.pnlJoin.TabIndex = 5;
             this.pnlJoin.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label4.Location = new System.Drawing.Point(42, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 27);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "房间号";
+            // 
+            // tbxRoomId
+            // 
+            this.tbxRoomId.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tbxRoomId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbxRoomId.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxRoomId.Location = new System.Drawing.Point(47, 82);
+            this.tbxRoomId.Name = "tbxRoomId";
+            this.tbxRoomId.Size = new System.Drawing.Size(165, 38);
+            this.tbxRoomId.TabIndex = 3;
+            this.tbxRoomId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxRoomId_KeyDown);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(217, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 27);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "设置昵称";
+            // 
+            // tbxNickJoin
+            // 
+            this.tbxNickJoin.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tbxNickJoin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbxNickJoin.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxNickJoin.Location = new System.Drawing.Point(222, 82);
+            this.tbxNickJoin.Name = "tbxNickJoin";
+            this.tbxNickJoin.Size = new System.Drawing.Size(165, 38);
+            this.tbxNickJoin.TabIndex = 1;
+            this.tbxNickJoin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxNickJoin_KeyDown);
             // 
             // btnJoinSubmit
             // 
@@ -147,64 +193,41 @@ namespace DrawAndGuess_client_csharp
             this.btnJoinSubmit.UseVisualStyleBackColor = false;
             this.btnJoinSubmit.Click += new System.EventHandler(this.btnJoinSubmit_Click);
             // 
-            // tbxNickJoin
-            // 
-            this.tbxNickJoin.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tbxNickJoin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxNickJoin.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxNickJoin.Location = new System.Drawing.Point(222, 82);
-            this.tbxNickJoin.Name = "tbxNickJoin";
-            this.tbxNickJoin.Size = new System.Drawing.Size(165, 38);
-            this.tbxNickJoin.TabIndex = 1;
-            this.tbxNickJoin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxNickJoin_KeyDown);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(217, 50);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 27);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "设置昵称";
-            // 
-            // tbxRoomId
-            // 
-            this.tbxRoomId.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tbxRoomId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxRoomId.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxRoomId.Location = new System.Drawing.Point(47, 82);
-            this.tbxRoomId.Name = "tbxRoomId";
-            this.tbxRoomId.Size = new System.Drawing.Size(165, 38);
-            this.tbxRoomId.TabIndex = 3;
-            this.tbxRoomId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxRoomId_KeyDown);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(42, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 27);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "房间号";
-            // 
             // pnlCreate
             // 
             this.pnlCreate.BackColor = System.Drawing.Color.Transparent;
             this.pnlCreate.Controls.Add(this.label2);
             this.pnlCreate.Controls.Add(this.tbxNickCreate);
             this.pnlCreate.Controls.Add(this.btnCreateSubmit);
-            this.pnlCreate.Location = new System.Drawing.Point(230, 0);
+            this.pnlCreate.Location = new System.Drawing.Point(217, 0);
             this.pnlCreate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlCreate.Name = "pnlCreate";
             this.pnlCreate.Size = new System.Drawing.Size(555, 203);
             this.pnlCreate.TabIndex = 4;
             this.pnlCreate.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(42, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 27);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "设置昵称";
+            // 
+            // tbxNickCreate
+            // 
+            this.tbxNickCreate.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tbxNickCreate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbxNickCreate.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxNickCreate.Location = new System.Drawing.Point(47, 82);
+            this.tbxNickCreate.Name = "tbxNickCreate";
+            this.tbxNickCreate.Size = new System.Drawing.Size(340, 38);
+            this.tbxNickCreate.TabIndex = 1;
+            this.tbxNickCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxNickCreate_KeyDown);
             // 
             // btnCreateSubmit
             // 
@@ -224,40 +247,17 @@ namespace DrawAndGuess_client_csharp
             this.btnCreateSubmit.UseVisualStyleBackColor = false;
             this.btnCreateSubmit.Click += new System.EventHandler(this.btnCreateSubmit_Click);
             // 
-            // tbxNickCreate
-            // 
-            this.tbxNickCreate.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tbxNickCreate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbxNickCreate.Font = new System.Drawing.Font("微软雅黑", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxNickCreate.Location = new System.Drawing.Point(47, 82);
-            this.tbxNickCreate.Name = "tbxNickCreate";
-            this.tbxNickCreate.Size = new System.Drawing.Size(340, 38);
-            this.tbxNickCreate.TabIndex = 1;
-            this.tbxNickCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxNickCreate_KeyDown);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(42, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 27);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "设置昵称";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.pnlCreate);
             this.panel1.Controls.Add(this.pnlJoin);
+            this.panel1.Controls.Add(this.pnlCreate);
             this.panel1.Controls.Add(this.btnCreate);
             this.panel1.Controls.Add(this.btnJoin);
-            this.panel1.Location = new System.Drawing.Point(0, 353);
+            this.panel1.Location = new System.Drawing.Point(24, 341);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(810, 200);
+            this.panel1.Size = new System.Drawing.Size(763, 190);
             this.panel1.TabIndex = 3;
             // 
             // BeginDialog
